@@ -4,25 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Karabakh Company - Official TruckersMP VTC</title>
-    <!-- Google Fonts for professional typography -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     
+    <!-- FontAwesome İkon Kitabxanası -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        /* 
-           ========================================================================
-           KODUN BU HİSSƏSİ SAYTIN DİZAYN VƏ RƏNGLƏRİNİ TƏNZİMLƏYİR (CSS).
-           DƏYİŞİKLİK ETMƏK ÜÇÜN AŞAĞIDAKI "HTML" HİSSƏSİNƏ KEÇİD EDİN.
-           ========================================================================
-        */
         :root {
-            --primary-color: #FFBB00; /* Şirkətin əsas qızılı/amber rəngi (R:255 G:187 B:0) */
-            --bg-dark: #0a0a0a;       /* Tam arxa fon qara rəng */
-            --bg-card: #141414;       /* Kartların daxili tünd rəngi */
-            --bg-input: #1f1f1f;      /* Giriş sahələri üçün rəng */
-            --text-light: #ffffff;    /* Ağ mətn rəngi */
-            --text-muted: #b3b3b3;    /* Solğun mətn rəngi (ikincili məlumatlar üçün) */
+            --primary-color: #FFBB00;
+            --bg-dark: #0a0a0a;
+            --bg-card: rgba(20, 20, 20, 0.85); /* Arxa plan şəkli görünsün deyə yüngül şəffaflıq */
+            --bg-input: #1f1f1f;
+            --text-light: #ffffff;
+            --text-muted: #d1d1d1;
             --transition: all 0.3s ease;
         }
 
@@ -36,12 +33,17 @@
 
         body {
             background-color: var(--bg-dark);
+            /* Arxa plan şəkli və üzərində oxunaqlılıq üçün tünd gradient təbəqəsi */
+            background-image: linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.95)), url('https://i.imgur.com/4pSeVvQ.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             color: var(--text-light);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Naviqasiya Paneli */
+        /* Naviqasiya */
         header {
             position: fixed;
             top: 0;
@@ -77,7 +79,7 @@
         }
 
         .logo-text {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -90,17 +92,24 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 25px;
+            gap: 20px;
         }
 
         nav ul li a {
             color: var(--text-light);
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 600;
             transition: var(--transition);
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        nav ul li a i {
+            color: var(--primary-color);
         }
 
         nav ul li a:hover {
@@ -121,7 +130,7 @@
             transition: var(--transition);
         }
 
-        /* Hero (Giriş) Bölməsi */
+        /* Hero */
         .hero {
             position: relative;
             min-height: 100vh;
@@ -129,7 +138,6 @@
             align-items: center;
             justify-content: center;
             padding: 120px 20px 60px 20px;
-            background: radial-gradient(circle at center, rgba(255, 187, 0, 0.08) 0%, rgba(10, 10, 10, 1) 70%);
             text-align: center;
         }
 
@@ -139,7 +147,9 @@
         }
 
         .badge {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             background-color: rgba(255, 187, 0, 0.1);
             border: 1px solid var(--primary-color);
             color: var(--primary-color);
@@ -166,6 +176,7 @@
             margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: -1px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
         }
 
         .hero h1 span {
@@ -179,6 +190,7 @@
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
         }
 
         .btn-group {
@@ -189,7 +201,9 @@
         }
 
         .btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             padding: 12px 30px;
             border-radius: 6px;
             font-size: 0.95rem;
@@ -212,18 +226,20 @@
         }
 
         .btn-secondary {
-            background-color: transparent;
+            background-color: rgba(20,20,20,0.6);
             color: var(--text-light);
-            border: 2px solid rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
         }
 
         .btn-secondary:hover {
-            border-color: var(--text-light);
+            border-color: var(--primary-color);
+            color: var(--primary-color);
             background-color: rgba(255, 255, 255, 0.05);
             transform: translateY(-2px);
         }
 
-        /* Ümumi Bölmə Strukturu */
+        /* Ümumi Bölmələr */
         section {
             padding: 90px 20px;
             max-width: 1200px;
@@ -240,8 +256,15 @@
             font-weight: 800;
             text-transform: uppercase;
             position: relative;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
             padding-bottom: 12px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+        }
+        
+        .section-header h2 i {
+            color: var(--primary-color);
         }
 
         .section-header h2::after {
@@ -256,14 +279,15 @@
             border-radius: 2px;
         }
 
-        /* Haqqımızda Bölməsi */
+        /* About Box */
         .about-box {
             background-color: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border-left: 5px solid var(--primary-color);
             padding: 40px;
             border-radius: 8px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            backdrop-filter: blur(8px);
         }
 
         .about-text {
@@ -272,25 +296,22 @@
             white-space: pre-line;
         }
 
-        /* Komanda (Staff) Bölməsi */
+        /* Staff Grid */
         .staff-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 25px;
         }
 
         .staff-card {
             background-color: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 8px;
             padding: 25px;
-            text-align: center;
             transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(8px);
         }
 
         .staff-card::before {
@@ -299,7 +320,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 3px;
+            height: 4px;
             background-color: rgba(255, 255, 255, 0.05);
             transition: var(--transition);
         }
@@ -314,56 +335,93 @@
 
         .staff-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+            border-color: rgba(255, 187, 0, 0.3);
         }
 
         .role-title {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
             color: var(--text-muted);
             font-weight: 700;
             letter-spacing: 1px;
-            margin-bottom: 15px;
-        }
-
-        .staff-name {
-            font-size: 1.3rem;
-            font-weight: 700;
             margin-bottom: 20px;
-        }
-
-        .staff-link {
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            justify-content: center;
             gap: 8px;
-            color: var(--primary-color);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
-            padding: 8px 16px;
-            background-color: rgba(255, 187, 0, 0.05);
-            border-radius: 4px;
-            transition: var(--transition);
-            border: 1px solid rgba(255, 187, 0, 0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 10px;
         }
 
-        .staff-link:hover {
+        .role-title i {
+            color: var(--primary-color);
+        }
+
+        /* Adları özündə saxlayan blok (klik ləkləyən hissə) */
+        .staff-names-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .staff-name-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(255, 187, 0, 0.05);
+            border: 1px solid rgba(255, 187, 0, 0.1);
+            padding: 12px 15px;
+            border-radius: 6px;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.15rem;
+            font-weight: 700;
+            transition: var(--transition);
+        }
+
+        .staff-name-link i {
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: var(--transition);
+        }
+
+        .staff-name-link:hover {
             background-color: var(--primary-color);
-            color: #000000;
+            color: #000;
+            border-color: var(--primary-color);
+        }
+
+        .staff-name-link:hover i {
+            color: #000;
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* İşçi axtarılan vakansiya dizaynı */
+        .hiring-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(255, 59, 59, 0.05);
+            border: 1px dashed rgba(255, 59, 59, 0.4);
+            padding: 12px 15px;
+            border-radius: 6px;
+        }
+
+        .hiring-text {
+            color: #ff3b3b;
+            font-weight: 700;
+            font-size: 1.1rem;
         }
 
         .status-badge {
-            display: inline-block;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 800;
             text-transform: uppercase;
-            padding: 4px 12px;
+            padding: 4px 10px;
             border-radius: 50px;
-            margin-top: 10px;
-        }
-
-        .status-hiring {
             background-color: rgba(255, 59, 59, 0.1);
             color: #ff3b3b;
             border: 1px solid rgba(255, 59, 59, 0.2);
@@ -374,7 +432,7 @@
             50% { opacity: 0.6; }
         }
 
-        /* Qalereya Bölməsi */
+        /* Qalereya */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -386,8 +444,8 @@
             border-radius: 8px;
             overflow: hidden;
             aspect-ratio: 16 / 9;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.02);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.05);
         }
 
         .gallery-item img {
@@ -401,7 +459,7 @@
             transform: scale(1.06);
         }
 
-        /* Tədbirlər (Events) Bölməsi */
+        /* Events */
         .events-container {
             max-width: 800px;
             margin: 0 auto;
@@ -409,7 +467,7 @@
 
         .event-card {
             background-color: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 8px;
             padding: 25px;
             display: flex;
@@ -417,34 +475,38 @@
             justify-content: space-between;
             gap: 20px;
             transition: var(--transition);
+            backdrop-filter: blur(8px);
         }
 
         .event-card:hover {
-            border-color: rgba(255, 187, 0, 0.2);
+            border-color: rgba(255, 187, 0, 0.3);
+            transform: translateX(5px);
         }
 
         .event-date-box {
             background-color: rgba(255, 187, 0, 0.1);
             border: 1px solid rgba(255, 187, 0, 0.2);
             color: var(--primary-color);
-            padding: 12px;
+            padding: 15px;
             border-radius: 6px;
             text-align: center;
             min-width: 90px;
         }
 
         .event-date-box .day {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 800;
             display: block;
             line-height: 1;
         }
 
         .event-date-box .month {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
+            margin-top: 5px;
+            display: block;
         }
 
         .event-details {
@@ -452,17 +514,20 @@
         }
 
         .event-details h3 {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             font-weight: 700;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .event-details p {
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
 
-        /* Tərəfdaşlar (Partners) Bölməsi */
+        /* Partners */
         .partners-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -471,7 +536,7 @@
 
         .partner-card {
             background-color: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 8px;
             padding: 30px 20px;
             text-align: center;
@@ -483,24 +548,30 @@
             gap: 20px;
             text-decoration: none;
             color: var(--text-light);
+            backdrop-filter: blur(8px);
         }
 
         .partner-card:hover {
-            transform: translateY(-3px);
-            border-color: rgba(255, 187, 0, 0.2);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            transform: translateY(-5px);
+            border-color: rgba(255, 187, 0, 0.3);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
 
         .partner-logo-container {
-            width: 100px;
-            height: 100px;
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
-            background-color: rgba(255,255,255,0.02);
+            background-color: rgba(10,10,10,0.8);
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 2px solid rgba(255,255,255,0.05);
+            transition: var(--transition);
+        }
+
+        .partner-card:hover .partner-logo-container {
+            border-color: var(--primary-color);
         }
 
         .partner-logo-container img {
@@ -515,12 +586,13 @@
             font-weight: 700;
         }
 
-        /* Alt Məlumat Paneli (Footer) */
+        /* Footer */
         footer {
-            background-color: #050505;
-            border-top: 1px solid rgba(255, 255, 255, 0.02);
+            background-color: rgba(5, 5, 5, 0.95);
+            border-top: 1px solid rgba(255, 187, 0, 0.1);
             padding: 50px 20px 25px 20px;
             margin-top: 50px;
+            backdrop-filter: blur(10px);
         }
 
         .footer-content {
@@ -536,7 +608,7 @@
         }
 
         .footer-brand h4 {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             font-weight: 800;
             text-transform: uppercase;
             margin-bottom: 8px;
@@ -548,9 +620,10 @@
 
         .footer-brand p {
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 0.9rem;
         }
 
+        /* Footer Social Icons */
         .social-links {
             display: flex;
             gap: 15px;
@@ -560,14 +633,13 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 6px;
-            background-color: var(--bg-card);
+            width: 45px;
+            height: 45px;
+            border-radius: 8px;
+            background-color: var(--bg-input);
             color: var(--text-light);
             text-decoration: none;
-            font-weight: 700;
-            font-size: 0.85rem;
+            font-size: 1.3rem;
             transition: var(--transition);
             border: 1px solid rgba(255,255,255,0.05);
         }
@@ -575,17 +647,19 @@
         .social-btn:hover {
             background-color: var(--primary-color);
             color: #000000;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 187, 0, 0.3);
+            border-color: var(--primary-color);
         }
 
         .copyright {
             text-align: center;
             color: var(--text-muted);
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             margin-top: 25px;
         }
 
-        /* Mobil Cihazlar Üçün Uyğunluq (Responsive) */
+        /* Mobile */
         @media (max-width: 768px) {
             nav ul {
                 display: none;
@@ -593,12 +667,12 @@
                 top: 100%;
                 left: 0;
                 width: 100%;
-                background-color: var(--bg-dark);
+                background-color: rgba(10, 10, 10, 0.98);
                 flex-direction: column;
                 padding: 20px;
                 gap: 15px;
                 border-bottom: 1px solid rgba(255, 187, 0, 0.1);
-                text-align: center;
+                text-align: left;
             }
 
             nav ul.active {
@@ -611,10 +685,6 @@
 
             .hero h1 {
                 font-size: 2.3rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
             }
 
             section {
@@ -639,30 +709,26 @@
 </head>
 <body>
 
-    <!-- NAVİQASİYA PANERLİ (HEADER) -->
     <header>
         <div class="nav-container">
-            <!-- LOGO VƏ ŞİRKƏT ADI -->
-            <!-- Əgər gələcəkdə loqo linkini dəyişmək istəsəniz, aşağıdakı src="..." daxilindəki linki yeniləyin -->
+            <!-- LOGO -->
             <a href="#" class="logo-area">
                 <img src="https://i.imgur.com/suK0Znv.png" alt="Karabakh Company Logo">
-                <div class="logo-text">Karabakh <span>Co.</span></div>
+                <div class="logo-text">Karabakh <span>Company</span></div>
             </a>
 
-            <!-- MENYU LİNKLƏRİ -->
+            <!-- MENYU (İkonlarla) -->
             <nav>
                 <ul id="nav-menu">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#staff">Staff Team</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#events">Events</a></li>
-                    <li><a href="#partners">Partners</a></li>
-                    <li><a href="#join">Join Us</a></li>
+                    <li><a href="#"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li><a href="#about"><i class="fa-solid fa-circle-info"></i> About</a></li>
+                    <li><a href="#staff"><i class="fa-solid fa-users"></i> Staff</a></li>
+                    <li><a href="#gallery"><i class="fa-solid fa-image"></i> Gallery</a></li>
+                    <li><a href="#events"><i class="fa-solid fa-calendar-check"></i> Events</a></li>
+                    <li><a href="#partners"><i class="fa-solid fa-handshake"></i> Partners</a></li>
                 </ul>
             </nav>
 
-            <!-- Mobil Versiya Üçün Menyu Düyməsi -->
             <div class="burger-menu" id="burger-toggle">
                 <div></div>
                 <div></div>
@@ -671,235 +737,182 @@
         </div>
     </header>
 
-    <!-- HERO (ƏSAS GİRİŞ VƏ QARŞILAMA) BÖLMƏSİ -->
     <main>
         <section class="hero" id="home">
             <div class="hero-content">
-                <!-- VTC Statusu -->
-                <div class="badge">The Only Validated VTC in Azerbaijan</div>
+                <div class="badge"><i class="fa-solid fa-medal"></i> The Only Validated VTC in Azerbaijan</div>
                 
-                <!-- Şirikət Adı -->
                 <h1>Welcome to <br><span>Karabakh Company</span></h1>
                 
-                <!-- Qısa Sloqan və ya Təsvir -->
                 <p>Representing Azerbaijan with pride, structural integrity, and professionalism on the global TruckersMP stage.</p>
                 
-                <!-- Əsas Düymələr (Kliklədikdə müvafiq keçidlərə yönləndirir) -->
                 <div class="btn-group">
-                    <a href="https://truckersmp.com/vtc/81836" target="_blank" class="btn btn-primary">TruckersMP Profile</a>
-                    <a href="https://discord.gg/5YJqGrwhkr" target="_blank" class="btn btn-secondary">Join Our Discord</a>
+                    <a href="https://truckersmp.com/vtc/81836" target="_blank" class="btn btn-primary">
+                        <i class="fa-solid fa-truck"></i> TruckersMP Link
+                    </a>
+                    <a href="https://discord.gg/5YJqGrwhkr" target="_blank" class="btn btn-secondary">
+                        <i class="fa-brands fa-discord"></i> Join Discord
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- HAQQIMIZDA (ABOUT) BÖLMƏSİ -->
+        <!-- HAQQIMIZDA -->
         <section id="about">
             <div class="section-header">
-                <h2>About Us</h2>
+                <h2><i class="fa-solid fa-circle-info"></i> About Us</h2>
             </div>
             <div class="about-box">
-                <!-- BURADAKI MƏTNİ İSTƏDİYİNİZ ZAMAN DƏYİŞƏ BİLƏRSİNİZ -->
                 <p class="about-text">Karabakh Company was established on July 27, 2025, as a high-standard virtual trucking organization. We focus on operational excellence in ETS2 and ATS, fostering a community built on discipline, structural integrity, and professional synergy.
 
                 We are not just a VTC; we are a family representing Azerbaijan on the global TruckersMP stage.</p>
             </div>
         </section>
 
-        <!-- KOMANDA (STAFF TEAM) BÖLMƏSİ -->
-        <!-- 
-           YENİ AD ƏLAVƏ ETMƏK VƏ YA DƏYİŞMƏK ÇOX SADƏDİR:
-           - Hər bir şəxs bir "staff-card" bloku daxilindədir.
-           - Əgər vakansiya doludursa class="staff-card filled" saxlayın, addan aşağıdakı <a href="..."> hissəsinə TruckersMP linkini yazın.
-           - Əgər vakansiya boşdursa class="staff-card hiring" edin, ad yerinə "RECRUITMENT OPEN" yazın və link əvəzinə status teqi əlavə edin.
-        -->
+        <!-- KOMANDA (STAFF TEAM) -->
         <section id="staff">
             <div class="section-header">
-                <h2>Staff Team</h2>
+                <h2><i class="fa-solid fa-users"></i> Staff Team</h2>
             </div>
             <div class="staff-grid">
 
                 <!-- FOUNDER & OWNER -->
                 <div class="staff-card filled">
-                    <div>
-                        <div class="role-title">Founder & Owner</div>
-                        <div class="staff-name">Telman</div>
+                    <div class="role-title"><i class="fa-solid fa-crown"></i> Founder & Owner</div>
+                    <div class="staff-names-group">
+                        <a href="https://truckersmp.com/user/5341001" target="_blank" class="staff-name-link">
+                            Telman <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
                     </div>
-                    <a href="https://truckersmp.com/user/5341001" target="_blank" class="staff-link">TruckersMP Profile</a>
                 </div>
 
                 <!-- CHIEF OPERATING OFFICER -->
                 <div class="staff-card filled">
-                    <div>
-                        <div class="role-title">Chief Operating Officer (COO)</div>
-                        <div class="staff-name">Fərid</div>
+                    <div class="role-title"><i class="fa-solid fa-user-tie"></i> Chief Operating Officer (COO)</div>
+                    <div class="staff-names-group">
+                        <a href="https://truckersmp.com/user/5707927" target="_blank" class="staff-name-link">
+                            Fərid <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
                     </div>
-                    <a href="https://truckersmp.com/user/5707927" target="_blank" class="staff-link">TruckersMP Profile</a>
                 </div>
 
                 <!-- EVENT MANAGER -->
                 <div class="staff-card hiring">
-                    <div>
-                        <div class="role-title">Event Manager</div>
-                        <div class="staff-name" style="color: #ff3b3b;">Recruitment Open</div>
+                    <div class="role-title"><i class="fa-solid fa-calendar-alt"></i> Event Manager</div>
+                    <div class="hiring-box">
+                        <span class="hiring-text">Recruitment Open</span>
+                        <span class="status-badge">Hiring</span>
                     </div>
-                    <span class="status-badge status-hiring">Hiring Now</span>
                 </div>
 
                 <!-- EVENT TEAM -->
                 <div class="staff-card hiring">
-                    <div>
-                        <div class="role-title">Event Team</div>
-                        <div class="staff-name" style="color: #ff3b3b;">Recruitment Open</div>
+                    <div class="role-title"><i class="fa-solid fa-route"></i> Event Team</div>
+                    <div class="hiring-box">
+                        <span class="hiring-text">Recruitment Open</span>
+                        <span class="status-badge">Hiring</span>
                     </div>
-                    <span class="status-badge status-hiring">Hiring Now</span>
                 </div>
 
-                <!-- HUMAN RESOURCES MANAGER -->
+                <!-- HR MANAGER -->
                 <div class="staff-card hiring">
-                    <div>
-                        <div class="role-title">Human Resources Manager</div>
-                        <div class="staff-name" style="color: #ff3b3b;">Recruitment Open</div>
+                    <div class="role-title"><i class="fa-solid fa-briefcase"></i> HR Manager</div>
+                    <div class="hiring-box">
+                        <span class="hiring-text">Recruitment Open</span>
+                        <span class="status-badge">Hiring</span>
                     </div>
-                    <span class="status-badge status-hiring">Hiring Now</span>
                 </div>
 
-                <!-- HUMAN RESOURCES TEAM -->
+                <!-- HR TEAM -->
                 <div class="staff-card hiring">
-                    <div>
-                        <div class="role-title">Human Resources Team</div>
-                        <div class="staff-name" style="color: #ff3b3b;">Recruitment Open</div>
+                    <div class="role-title"><i class="fa-solid fa-user-cog"></i> HR Team</div>
+                    <div class="hiring-box">
+                        <span class="hiring-text">Recruitment Open</span>
+                        <span class="status-badge">Hiring</span>
                     </div>
-                    <span class="status-badge status-hiring">Hiring Now</span>
                 </div>
 
                 <!-- RECRUITMENT MANAGER -->
                 <div class="staff-card filled">
-                    <div>
-                        <div class="role-title">Recruitment Manager</div>
-                        <div class="staff-name">Vüsal</div>
+                    <div class="role-title"><i class="fa-solid fa-user-plus"></i> Recruitment Manager</div>
+                    <div class="staff-names-group">
+                        <a href="https://truckersmp.com/user/5683996" target="_blank" class="staff-name-link">
+                            Vüsal <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
                     </div>
-                    <a href="https://truckersmp.com/user/5683996" target="_blank" class="staff-link">TruckersMP Profile</a>
                 </div>
 
-                <!-- RECRUITMENT TEAM - 1 -->
+                <!-- RECRUITMENT TEAM (QRUPLAŞDIRILMIŞ PƏNCƏRƏ) -->
                 <div class="staff-card filled">
-                    <div>
-                        <div class="role-title">Recruitment Team</div>
-                        <div class="staff-name">Rəbbin</div>
+                    <div class="role-title"><i class="fa-solid fa-users-cog"></i> Recruitment Team</div>
+                    <div class="staff-names-group">
+                        <a href="https://truckersmp.com/user/5325090" target="_blank" class="staff-name-link">
+                            Rəbbin <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                        <a href="https://truckersmp.com/user/5946613" target="_blank" class="staff-name-link">
+                            Fəxri <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
                     </div>
-                    <a href="https://truckersmp.com/user/5325090" target="_blank" class="staff-link">TruckersMP Profile</a>
-                </div>
-
-                <!-- RECRUITMENT TEAM - 2 -->
-                <div class="staff-card filled">
-                    <div>
-                        <div class="role-title">Recruitment Team</div>
-                        <div class="staff-name">Fəxri</div>
-                    </div>
-                    <a href="https://truckersmp.com/user/5946613" target="_blank" class="staff-link">TruckersMP Profile</a>
                 </div>
 
             </div>
         </section>
 
-        <!-- QALEREYA (GALLERY) BÖLMƏSİ -->
-        <!-- 
-           ŞƏKİLLƏRİ DƏYİŞMƏK VƏ YA YENİSİNİ ƏLAVƏ ETMƏK ÜÇÜN:
-           src="..." daxilindəki imgur linkini silib öz yeni şəkil linkinizi yapışdırın.
-           Yeni şəkil əlavə etmək üçün bütöv bir <div class="gallery-item">...</div> blokunu kopyalayıb altına yerləşdirin.
-        -->
+        <!-- QALEREYA -->
         <section id="gallery">
             <div class="section-header">
-                <h2>Gallery</h2>
+                <h2><i class="fa-solid fa-image"></i> Gallery</h2>
             </div>
             <div class="gallery-grid">
-                
-                <!-- Şəkil 1 -->
-                <div class="gallery-item">
-                    <img src="https://i.imgur.com/2IQeBjP.jpeg" alt="Karabakh Company Convoy Screenshot">
-                </div>
-
-                <!-- Şəkil 2 -->
-                <div class="gallery-item">
-                    <img src="https://i.imgur.com/1R5KK9b.jpeg" alt="Karabakh Company Convoy Screenshot">
-                </div>
-
-                <!-- Şəkil 3 -->
-                <div class="gallery-item">
-                    <img src="https://i.imgur.com/cQaUy7G.jpeg" alt="Karabakh Company Convoy Screenshot">
-                </div>
-
-                <!-- Şəkil 4 -->
-                <div class="gallery-item">
-                    <img src="https://i.imgur.com/x2829F7.jpeg" alt="Karabakh Company Convoy Screenshot">
-                </div>
-
-                <!-- Şəkil 5 -->
-                <div class="gallery-item">
-                    <img src="https://i.imgur.com/VMfv36L.jpeg" alt="Karabakh Company Convoy Screenshot">
-                </div>
-
-                <!-- Şəkil 6 -->
-                <div class="gallery-item">
-                    <img src="https://i.imgur.com/b5uupUl.jpeg" alt="Karabakh Company Convoy Screenshot">
-                </div>
-
+                <div class="gallery-item"><img src="https://i.imgur.com/2IQeBjP.jpeg" alt="Convoy Screenshot"></div>
+                <div class="gallery-item"><img src="https://i.imgur.com/1R5KK9b.jpeg" alt="Convoy Screenshot"></div>
+                <div class="gallery-item"><img src="https://i.imgur.com/cQaUy7G.jpeg" alt="Convoy Screenshot"></div>
+                <div class="gallery-item"><img src="https://i.imgur.com/x2829F7.jpeg" alt="Convoy Screenshot"></div>
+                <div class="gallery-item"><img src="https://i.imgur.com/VMfv36L.jpeg" alt="Convoy Screenshot"></div>
+                <div class="gallery-item"><img src="https://i.imgur.com/b5uupUl.jpeg" alt="Convoy Screenshot"></div>
             </div>
         </section>
 
-        <!-- TƏDBİRLƏR (EVENTS) BÖLMƏSİ -->
-        <!-- 
-           HƏR YENİ KONVOY/EVENT ƏLAVƏ ETDİKDƏ BU BLOKU KOPYALAYIB İÇİNİ DƏYİŞİN.
-           - Tarixi göstərmək üçün <span class="day">..</span> və <span class="month">..</span> hissəsini dəyişin.
-           - Keçid linkini isə href="..." daxilinə yerləşdirin.
-        -->
+        <!-- TƏDBİRLƏR -->
         <section id="events">
             <div class="section-header">
-                <h2>Our Events</h2>
+                <h2><i class="fa-solid fa-calendar-check"></i> Our Events</h2>
             </div>
             <div class="events-container">
                 
-                <!-- EVENT KARTI BAŞLANGICI -->
                 <div class="event-card">
                     <div class="event-date-box">
                         <span class="day">10</span>
                         <span class="month">Jul</span>
                     </div>
                     <div class="event-details">
-                        <h3>1st Anniversary Convoy</h3>
+                        <h3><i class="fa-solid fa-map-location-dot" style="color: var(--primary-color);"></i> 1st Anniversary Convoy</h3>
                         <p>Join us as we celebrate our first official year on TruckersMP with an unforgettable scenic convoy layout.</p>
                     </div>
                     <div>
-                        <a href="https://truckersmp.com/events/34373-karabakh-company1st-year-anniversary" target="_blank" class="btn btn-primary" style="font-size: 0.85rem; padding: 8px 20px;">Event Page</a>
+                        <a href="https://truckersmp.com/events/34373-karabakh-company1st-year-anniversary" target="_blank" class="btn btn-primary" style="font-size: 0.85rem; padding: 10px 20px;">
+                            <i class="fa-solid fa-link"></i> Event Page
+                        </a>
                     </div>
                 </div>
-                <!-- EVENT KARTI BİTİŞİ -->
 
             </div>
         </section>
 
-        <!-- TƏRƏFDAŞLAR (PARTNERS) BÖLMƏSİ -->
-        <!-- 
-           TƏRƏFDAŞ ŞİRKƏTLƏRİ BURADAN İDARƏ EDƏ BİLƏRSİNİZ:
-           - href="..." daxilinə tərəfdaşın VTC linkini qoyun.
-           - src="..." daxilinə tərəfdaşın loqo linkini qoyun.
-           - <h3> daxilinə adını yazın.
-        -->
+        <!-- TƏRƏFDAŞLAR -->
         <section id="partners">
             <div class="section-header">
-                <h2>Our Partners</h2>
+                <h2><i class="fa-solid fa-handshake"></i> Our Partners</h2>
             </div>
             <div class="partners-grid">
 
-                <!-- Tərəfdaş 1: Veldoria Convoy Control -->
                 <a href="https://truckersmp.com/vtc/73816" target="_blank" class="partner-card">
                     <div class="partner-logo-container">
-                        <img src="https://i.imgur.com/S6YJxHw.png" alt="Veldoria Convoy Control Logo">
+                        <img src="https://i.imgur.com/S6YJxHw.png" alt="Veldoria Logo">
                     </div>
                     <h3>Veldoria Convoy Control</h3>
                 </a>
 
-                <!-- Tərəfdaş 2: Güllüm Express -->
                 <a href="https://truckersmp.com/vtc/87113" target="_blank" class="partner-card">
                     <div class="partner-logo-container">
                         <img src="https://i.imgur.com/iyaIABH.jpeg" alt="Güllüm Express Logo">
@@ -907,10 +920,9 @@
                     <h3>Güllüm Express</h3>
                 </a>
 
-                <!-- Tərəfdaş 3: Purple Dragons Logistics -->
                 <a href="https://truckersmp.com/vtc/74387" target="_blank" class="partner-card">
                     <div class="partner-logo-container">
-                        <img src="https://i.imgur.com/udr1o1C.png" alt="Purple Dragons Logistics Logo">
+                        <img src="https://i.imgur.com/udr1o1C.png" alt="Purple Dragons Logo">
                     </div>
                     <h3>Purple Dragons Logistics</h3>
                 </a>
@@ -918,21 +930,22 @@
             </div>
         </section>
 
-        <!-- BİZƏ QOŞULUN (JOIN US / CALL TO ACTION) BÖLMƏSİ -->
-        <section id="join" style="text-align: center; border-top: 1px solid rgba(255,187,0,0.05); padding-top: 100px;">
+        <!-- CALL TO ACTION -->
+        <section id="join" style="text-align: center; border-top: 1px solid rgba(255,187,0,0.1); padding-top: 100px;">
             <div class="hero-content" style="margin: 0 auto;">
-                <div class="badge" style="animation: none;">Ready to Drive?</div>
-                <h2 style="font-size: 2.5rem; font-weight: 800; text-transform: uppercase; margin-bottom: 20px;">Become a Part of Our Family</h2>
-                <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 40px auto; font-size: 1.1rem;">We are always looking for passionate, disciplined, and professional drivers to join Karabakh Company. Submit your application on TruckersMP or chat with our recruitment team on Discord.</p>
+                <div class="badge" style="animation: none;"><i class="fa-solid fa-steering-wheel"></i> Ready to Drive?</div>
+                <h2 style="font-size: 2.5rem; font-weight: 800; text-transform: uppercase; margin-bottom: 20px; text-shadow: 2px 2px 8px rgba(0,0,0,0.8);">Become a Part of Our Family</h2>
+                <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 40px auto; font-size: 1.1rem;">We are always looking for passionate, disciplined, and professional drivers to join Karabakh Company.</p>
                 <div class="btn-group">
-                    <a href="https://truckersmp.com/vtc/81836" target="_blank" class="btn btn-primary">Apply on TruckersMP</a>
-                    <a href="https://discord.gg/5YJqGrwhkr" target="_blank" class="btn btn-secondary">Join Discord Server</a>
+                    <a href="https://truckersmp.com/vtc/81836" target="_blank" class="btn btn-primary">
+                        <i class="fa-solid fa-file-signature"></i> Apply Now
+                    </a>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- ALT MƏLUMAT PANERLİ (FOOTER) -->
+    <!-- FOOTER -->
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
@@ -940,14 +953,17 @@
                 <p>The Only Validated VTC in Azerbaijan. Established July 27, 2025.</p>
             </div>
             
-            <!-- SOSİAL ŞƏBƏKƏ LINKLƏRİ -->
+            <!-- FONTAWESOME İKONLARI İLƏ SOSİAL ŞƏBƏKƏLƏR -->
             <div class="social-links">
-                <!-- TruckersMP Səhifəsi -->
-                <a href="https://truckersmp.com/vtc/81836" target="_blank" class="social-btn" title="TruckersMP">TMP</a>
-                <!-- Discord Serveri -->
-                <a href="https://discord.gg/5YJqGrwhkr" target="_blank" class="social-btn" title="Discord">DC</a>
-                <!-- TikTok Səhifəsi -->
-                <a href="https://www.tiktok.com/@karabakhvtc?_t=ZS-8yjTulmiDpv&_r=1" target="_blank" class="social-btn" title="TikTok">TT</a>
+                <a href="https://truckersmp.com/vtc/81836" target="_blank" class="social-btn" title="TruckersMP">
+                    <i class="fa-solid fa-truck"></i>
+                </a>
+                <a href="https://discord.gg/5YJqGrwhkr" target="_blank" class="social-btn" title="Discord">
+                    <i class="fa-brands fa-discord"></i>
+                </a>
+                <a href="https://www.tiktok.com/@karabakhvtc?_t=ZS-8yjTulmiDpv&_r=1" target="_blank" class="social-btn" title="TikTok">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
             </div>
         </div>
         <div class="copyright">
@@ -955,7 +971,6 @@
         </div>
     </footer>
 
-    <!-- MOBİL MENYU ÜÇÜN SADƏ SCRIPT -->
     <script>
         const burgerToggle = document.getElementById('burger-toggle');
         const navMenu = document.getElementById('nav-menu');
@@ -964,7 +979,6 @@
             navMenu.classList.toggle('active');
         });
 
-        // Menyu linkinə kliklədikdə mobil menyunun bağlanması
         document.querySelectorAll('nav ul li a').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
