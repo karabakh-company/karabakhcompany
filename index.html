@@ -3,1082 +3,973 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karabakh Company | Virtual Trucking Excellence</title>
+    <title>Karabakh Company - Official TruckersMP VTC</title>
+    <!-- Google Fonts for professional typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
-        /* ========================================
-        CSS RESET & VARIABLES
-        ========================================
+        /* 
+           ========================================================================
+           KODUN BU HİSSƏSİ SAYTIN DİZAYN VƏ RƏNGLƏRİNİ TƏNZİMLƏYİR (CSS).
+           DƏYİŞİKLİK ETMƏK ÜÇÜN AŞAĞIDAKI "HTML" HİSSƏSİNƏ KEÇİD EDİN.
+           ========================================================================
         */
         :root {
-            --primary: rgb(255, 187, 0); /* User Requested Orange */
-            --primary-dim: rgba(255, 187, 0, 0.2);
-            --dark-bg: #0a0a0a;
-            --card-bg: #111111;
-            --text-light: #ffffff;
-            --text-gray: #b3b3b3;
-            --gradient: linear-gradient(135deg, #ffbb00 0%, #ff8800 100%);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --primary-color: #FFBB00; /* Şirkətin əsas qızılı/amber rəngi (R:255 G:187 B:0) */
+            --bg-dark: #0a0a0a;       /* Tam arxa fon qara rəng */
+            --bg-card: #141414;       /* Kartların daxili tünd rəngi */
+            --bg-input: #1f1f1f;      /* Giriş sahələri üçün rəng */
+            --text-light: #ffffff;    /* Ağ mətn rəngi */
+            --text-muted: #b3b3b3;    /* Solğun mətn rəngi (ikincili məlumatlar üçün) */
+            --transition: all 0.3s ease;
         }
 
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--dark-bg);
+            background-color: var(--bg-dark);
             color: var(--text-light);
-            overflow-x: hidden;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #000;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 5px;
-        }
-
-        /* ========================================
-        UTILITY CLASSES & ANIMATIONS
-        ========================================
-        */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .section-padding {
-            padding: 100px 0;
-        }
-
-        .text-center { text-align: center; }
-        .text-primary { color: var(--primary); }
-        
-        h1, h2, h3, h4 {
-            font-family: 'Rajdhani', sans-serif;
-            text-transform: uppercase;
-            font-weight: 700;
-        }
-
-        .section-title {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            position: relative;
-            display: inline-block;
-            letter-spacing: 2px;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--primary);
-            box-shadow: 0 0 15px var(--primary);
-        }
-
-        /* Animation Classes */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Button Styles */
-        .btn {
-            display: inline-block;
-            padding: 15px 35px;
-            background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-            font-weight: 700;
-            text-decoration: none;
-            text-transform: uppercase;
-            transition: var(--transition);
-            clip-path: polygon(10% 0, 100% 0, 100% 80%, 90% 100%, 0 100%, 0 20%);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            cursor: pointer;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 100%;
-            background: var(--primary);
-            z-index: -1;
-            transition: var(--transition);
-        }
-
-        .btn:hover {
-            color: #000;
-            box-shadow: 0 0 20px var(--primary);
-        }
-        
-        .btn:hover::before {
-            width: 100%;
-        }
-
-        /* ========================================
-        PRELOADER
-        ========================================
-        */
-        #preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #000;
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-        
-        .loader-logo {
-            width: 100px;
-            animation: pulse 2s infinite;
-        }
-
-        .loader-bar {
-            width: 200px;
-            height: 4px;
-            background: #222;
-            margin-top: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .loader-progress {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            background: var(--primary);
-            width: 0%;
-            animation: loadProgress 2s ease-in-out forwards;
-        }
-
-        @keyframes loadProgress {
-            0% { width: 0%; }
-            100% { width: 100%; }
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.1); opacity: 0.7; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        /* ========================================
-        HEADER & NAV
-        ========================================
-        */
+        /* Naviqasiya Paneli */
         header {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
-            z-index: 1000;
-            background: rgba(10, 10, 10, 0.8);
+            background-color: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 187, 0, 0.1);
-            padding: 15px 0;
-            transition: 0.4s;
+            z-index: 1000;
         }
 
         .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 15px 20px;
         }
 
-        .logo img {
-            height: 50px;
-            vertical-align: middle;
-        }
-        .logo span {
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #fff;
-            margin-left: 10px;
-            text-transform: uppercase;
-        }
-        .logo span b { color: var(--primary); }
-
-        .nav-links {
+        .logo-area {
             display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            color: #fff;
+            align-items: center;
+            gap: 12px;
             text-decoration: none;
-            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .logo-area img {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 1.3rem;
+            font-weight: 800;
             text-transform: uppercase;
-            font-size: 0.9rem;
-            position: relative;
-            transition: 0.3s;
+            letter-spacing: 1px;
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0%;
-            height: 2px;
-            background: var(--primary);
-            transition: 0.3s;
+        .logo-text span {
+            color: var(--primary-color);
         }
 
-        .nav-links a:hover { color: var(--primary); }
-        .nav-links a:hover::after { width: 100%; }
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
 
-        .hamburger {
+        nav ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .burger-menu {
             display: none;
             cursor: pointer;
-            color: #fff;
-            font-size: 1.5rem;
+            flex-direction: column;
+            gap: 5px;
         }
 
-        /* ========================================
-        HERO SECTION
-        ========================================
-        */
+        .burger-menu div {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        /* Hero (Giriş) Bölməsi */
         .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('https://i.imgur.com/UgJTkaq.jpeg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed; /* Parallax effect */
+            position: relative;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 120px 20px 60px 20px;
+            background: radial-gradient(circle at center, rgba(255, 187, 0, 0.08) 0%, rgba(10, 10, 10, 1) 70%);
             text-align: center;
-            position: relative;
         }
 
         .hero-content {
+            max-width: 850px;
             z-index: 2;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: rgba(255, 187, 0, 0.1);
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 187, 0, 0.4); }
+            70% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(255, 187, 0, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 187, 0, 0); }
         }
 
         .hero h1 {
-            font-size: 5rem;
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
             margin-bottom: 20px;
-            line-height: 1;
-            text-shadow: 0 0 20px rgba(0,0,0,0.8);
-            animation: fadeInUp 1s ease-out;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span {
+            color: var(--primary-color);
         }
 
         .hero p {
-            font-size: 1.5rem;
-            color: #ddd;
-            margin-bottom: 40px;
-            max-width: 800px;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 35px;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
-            animation: fadeInUp 1.2s ease-out;
         }
 
-        .hero-span { color: var(--primary); }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ========================================
-        ABOUT US
-        ========================================
-        */
-        .about-content {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 50px;
-        }
-        
-        .about-text { flex: 1; min-width: 300px; }
-        .about-image { flex: 1; min-width: 300px; position: relative; }
-
-        .about-text p {
-            font-size: 1.1rem;
-            color: var(--text-gray);
-            margin-bottom: 20px;
-            border-left: 4px solid var(--primary);
-            padding-left: 20px;
-        }
-
-        .about-image img {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 0 30px rgba(255, 187, 0, 0.2);
-            border: 1px solid var(--primary);
-        }
-
-        /* ========================================
-        STATS SECTION
-        ========================================
-        */
-        .stats {
-            background: #111;
-            padding: 60px 0;
-            border-top: 1px solid #333;
-            border-bottom: 1px solid #333;
-        }
-        
-        .stats-grid {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 30px;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: var(--primary);
-            font-family: 'Rajdhani', sans-serif;
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 1rem;
-            color: #fff;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* ========================================
-        OUR PARTNERS
-        ========================================
-        */
-        .partners-grid {
+        .btn-group {
             display: flex;
             justify-content: center;
-            gap: 40px;
+            gap: 15px;
             flex-wrap: wrap;
-            margin-top: 50px;
         }
 
-        .partner-card {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 10px;
-            width: 250px;
-            text-align: center;
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             transition: var(--transition);
-            border: 1px solid #222;
         }
 
-        .partner-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: #000000;
+        }
+
+        .btn-primary:hover {
+            background-color: #e0a500;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 187, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-light);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-light);
+            background-color: rgba(255, 255, 255, 0.05);
+            transform: translateY(-2px);
+        }
+
+        /* Ümumi Bölmə Strukturu */
+        section {
+            padding: 90px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 12px;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        /* Haqqımızda Bölməsi */
+        .about-box {
+            background-color: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-left: 5px solid var(--primary-color);
+            padding: 40px;
+            border-radius: 8px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        .partner-logo {
-            width: 120px;
-            height: 120px;
-            object-fit: contain;
-            filter: grayscale(100%);
-            transition: 0.4s;
-            margin-bottom: 15px;
+        .about-text {
+            font-size: 1.15rem;
+            color: #e0e0e0;
+            white-space: pre-line;
         }
 
-        .partner-card:hover .partner-logo {
-            filter: grayscale(0%);
-        }
-
-        .partner-name {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #fff;
-        }
-
-        /* ========================================
-        STAFF TEAM
-        ========================================
-        */
+        /* Komanda (Staff) Bölməsi */
         .staff-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
         }
 
         .staff-card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            overflow: hidden;
-            position: relative;
-            border: 1px solid #222;
-            transition: var(--transition);
+            background-color: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 25px;
             text-align: center;
-            padding-bottom: 20px;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .staff-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+        }
+
+        .staff-card.filled::before {
+            background-color: var(--primary-color);
+        }
+
+        .staff-card.hiring::before {
+            background-color: #ff3b3b;
         }
 
         .staff-card:hover {
-            border-color: var(--primary);
-            box-shadow: 0 0 20px rgba(255, 187, 0, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
         }
 
-        .staff-header {
-            height: 100px;
-            background: linear-gradient(135deg, #333, #000);
-            position: relative;
-        }
-        
-        .staff-header::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background: url('https://truckersmp.com/assets/img/truckersmp-logo-sm.png') no-repeat center;
-            background-size: 50%;
-            opacity: 0.1;
-        }
-
-        .staff-avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 4px solid var(--primary);
-            margin: -50px auto 15px;
-            background: #222;
-            position: relative;
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-size: 2rem;
-            overflow: hidden;
-        }
-        
-        .staff-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .staff-role {
-            color: var(--primary);
-            font-size: 0.9rem;
-            font-weight: 700;
+        .role-title {
+            font-size: 0.85rem;
             text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 700;
             letter-spacing: 1px;
-            margin-bottom: 5px;
+            margin-bottom: 15px;
         }
 
         .staff-name {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 10px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
         }
 
-        /* ========================================
-        GALLERY
-        ========================================
-        */
+        .staff-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 8px 16px;
+            background-color: rgba(255, 187, 0, 0.05);
+            border-radius: 4px;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 187, 0, 0.1);
+        }
+
+        .staff-link:hover {
+            background-color: var(--primary-color);
+            color: #000000;
+        }
+
+        .status-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 50px;
+            margin-top: 10px;
+        }
+
+        .status-hiring {
+            background-color: rgba(255, 59, 59, 0.1);
+            color: #ff3b3b;
+            border: 1px solid rgba(255, 59, 59, 0.2);
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0.6; }
+        }
+
+        /* Qalereya Bölməsi */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
         }
 
         .gallery-item {
             position: relative;
-            height: 250px;
-            overflow: hidden;
             border-radius: 8px;
-            cursor: pointer;
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.02);
         }
 
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: 0.5s;
+            transition: transform 0.5s ease;
         }
 
-        .gallery-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 187, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: 0.4s;
+        .gallery-item:hover img {
+            transform: scale(1.06);
         }
 
-        .gallery-item:hover img { transform: scale(1.1); }
-        .gallery-item:hover .gallery-overlay { opacity: 1; }
-        
-        .gallery-overlay i {
-            font-size: 2rem;
-            color: #000;
-        }
-
-        /* Lightbox Modal */
-        .lightbox {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 2000;
-            display: none;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .lightbox img {
-            max-width: 90%;
-            max-height: 80vh;
-            border: 2px solid var(--primary);
-            box-shadow: 0 0 50px rgba(255, 187, 0, 0.3);
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            color: #fff;
-            font-size: 3rem;
-            cursor: pointer;
-        }
-
-        /* ========================================
-        RULES SECTION
-        ========================================
-        */
-        .rules-container {
-            max-width: 1000px;
+        /* Tədbirlər (Events) Bölməsi */
+        .events-container {
+            max-width: 800px;
             margin: 0 auto;
         }
 
-        .rule-card {
-            background: #1a1a1a;
-            margin-bottom: 20px;
-            padding: 20px 30px;
-            border-left: 5px solid #333;
+        .event-card {
+            background-color: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
             transition: var(--transition);
         }
 
-        .rule-card:hover {
-            border-left: 5px solid var(--primary);
-            background: #222;
+        .event-card:hover {
+            border-color: rgba(255, 187, 0, 0.2);
         }
 
-        .rule-title {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: #fff;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-
-        .rule-title i {
-            color: var(--primary);
-            margin-right: 15px;
-        }
-
-        .rule-desc { color: #aaa; font-size: 0.95rem; }
-
-        /* ========================================
-        FOOTER
-        ========================================
-        */
-        footer {
-            background: #050505;
-            padding: 80px 0 30px;
-            border-top: 1px solid #222;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 60px;
-        }
-
-        .footer-brand p { color: #888; margin-top: 20px; }
-        
-        .footer-heading {
-            color: #fff;
-            font-size: 1.2rem;
-            margin-bottom: 25px;
-            font-family: 'Rajdhani', sans-serif;
-            text-transform: uppercase;
-        }
-
-        .footer-links li { list-style: none; margin-bottom: 10px; }
-        .footer-links a { color: #888; text-decoration: none; transition: 0.3s; }
-        .footer-links a:hover { color: var(--primary); padding-left: 5px; }
-
-        .social-icons { display: flex; gap: 15px; }
-        .social-icons a {
-            width: 40px;
-            height: 40px;
-            background: #222;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: 0.3s;
-        }
-        
-        .social-icons a:hover { background: var(--primary); color: #000; }
-
-        .copyright {
+        .event-date-box {
+            background-color: rgba(255, 187, 0, 0.1);
+            border: 1px solid rgba(255, 187, 0, 0.2);
+            color: var(--primary-color);
+            padding: 12px;
+            border-radius: 6px;
             text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid #1a1a1a;
-            color: #666;
+            min-width: 90px;
+        }
+
+        .event-date-box .day {
+            font-size: 1.5rem;
+            font-weight: 800;
+            display: block;
+            line-height: 1;
+        }
+
+        .event-date-box .month {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .event-details {
+            flex-grow: 1;
+        }
+
+        .event-details h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .event-details p {
+            color: var(--text-muted);
             font-size: 0.9rem;
         }
 
-        /* ========================================
-        RESPONSIVE
-        ========================================
-        */
+        /* Tərəfdaşlar (Partners) Bölməsi */
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .partner-card {
+            background-color: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            text-decoration: none;
+            color: var(--text-light);
+        }
+
+        .partner-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(255, 187, 0, 0.2);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+        }
+
+        .partner-logo-container {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.02);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .partner-logo-container img {
+            width: 85%;
+            height: 85%;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        .partner-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        /* Alt Məlumat Paneli (Footer) */
+        footer {
+            background-color: #050505;
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
+            padding: 50px 20px 25px 20px;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-brand h4 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .footer-brand h4 span {
+            color: var(--primary-color);
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            background-color: var(--bg-card);
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .social-btn:hover {
+            background-color: var(--primary-color);
+            color: #000000;
+            transform: translateY(-2px);
+        }
+
+        .copyright {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            margin-top: 25px;
+        }
+
+        /* Mobil Cihazlar Üçün Uyğunluq (Responsive) */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 3rem; }
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 70%;
-                height: 100vh;
-                background: #000;
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--bg-dark);
                 flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                transition: 0.4s;
-                border-left: 2px solid var(--primary);
+                padding: 20px;
+                gap: 15px;
+                border-bottom: 1px solid rgba(255, 187, 0, 0.1);
+                text-align: center;
             }
-            .nav-links.active { right: 0; }
-            .hamburger { display: block; z-index: 1001; }
-            .stats-grid { flex-direction: column; }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .burger-menu {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 60px 20px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .event-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div id="preloader">
-        <div class="loader-logo">
-            <img src="https://i.imgur.com/LoC8slA.png" alt="Loading" style="width:100%">
-        </div>
-        <div class="loader-bar">
-            <div class="loader-progress"></div>
-        </div>
-        <h3 style="color:white; margin-top:10px; font-family:'Rajdhani'">LOADING VTC...</h3>
-    </div>
-
+    <!-- NAVİQASİYA PANERLİ (HEADER) -->
     <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <a href="#">
-                    <img src="https://i.imgur.com/LoC8slA.png" alt="Karabakh VTC Logo">
-                    <span>KARABAKH <b>COMPANY</b></span>
-                </a>
-            </div>
+        <div class="nav-container">
+            <!-- LOGO VƏ ŞİRKƏT ADI -->
+            <!-- Əgər gələcəkdə loqo linkini dəyişmək istəsəniz, aşağıdakı src="..." daxilindəki linki yeniləyin -->
+            <a href="#" class="logo-area">
+                <img src="https://i.imgur.com/suK0Znv.png" alt="Karabakh Company Logo">
+                <div class="logo-text">Karabakh <span>Co.</span></div>
+            </a>
+
+            <!-- MENYU LİNKLƏRİ -->
             <nav>
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="#hero">Home</a></li>
+                <ul id="nav-menu">
+                    <li><a href="#">Home</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#partners">Partners</a></li>
-                    <li><a href="#team">Staff</a></li>
+                    <li><a href="#staff">Staff Team</a></li>
                     <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#join" class="text-primary">Join Us</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#partners">Partners</a></li>
+                    <li><a href="#join">Join Us</a></li>
                 </ul>
             </nav>
-            <div class="hamburger" onclick="toggleMenu()">
-                <i class="fas fa-bars"></i>
+
+            <!-- Mobil Versiya Üçün Menyu Düyməsi -->
+            <div class="burger-menu" id="burger-toggle">
+                <div></div>
+                <div></div>
+                <div></div>
             </div>
         </div>
     </header>
 
-    <section id="hero" class="hero">
-        <div class="container hero-content">
-            <h4 style="color: #fff; letter-spacing: 5px; margin-bottom: 10px;">ESTABLISHED 2025</h4>
-            <h1>WE ARE <span class="hero-span">KARABAKH</span></h1>
-            <p>Professional Synergy. Operational Excellence. Discipline.</p>
-            <a href="#join" class="btn">Apply Now</a>
-            <a href="https://discord.gg/5YJqGrwhkr" target="_blank" class="btn" style="margin-left: 20px; border-color: #7289DA; color: #fff;"><i class="fab fa-discord"></i> Discord</a>
-        </div>
-    </section>
-
-    <section id="about" class="section-padding">
-        <div class="container">
-            <div class="text-center">
-                <h2 class="section-title reveal">About Us</h2>
-            </div>
-            <div class="about-content reveal" style="margin-top: 50px;">
-                <div class="about-image">
-                    <img src="https://imgur.com/UlJTyjd" alt="Truck Convoy">
-                </div>
-                <div class="about-text">
-                    <h3 style="margin-bottom: 20px;">Who We Are</h3>
-                    <p>Karabakh Company was established on July 27, 2025, as a high-standard virtual trucking organization. We focus on operational excellence in ETS2 and ATS, fostering a community built on discipline, structural integrity, and professional synergy.</p>
-                    <p>We are not just a VTC; we are a family representing Azerbaijan on the global TruckersMP stage. Whether it's huge convoys or daily jobs, we drive with pride.</p>
-                    <br>
-                    <a href="https://truckersmp.com/vtc/81836" target="_blank" class="btn">View VTC Page</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="stats reveal">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-number" data-target="2025">0</span>
-                    <span class="stat-label">Est. Year</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" data-target="45">0</span>
-                    <span class="stat-label">Drivers</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" data-target="200">0</span>
-                    <span class="stat-label">Discord members</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" data-target="23">0</span>
-                    <span class="stat-label">Convoys</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <section id="partners" class="section-padding" style="background: #0e0e0e;">
-        <div class="container">
-            <div class="text-center">
-                <h2 class="section-title reveal">Our Partners</h2>
-                <p class="reveal" style="color: #888; margin-top: 10px;">We are proud to work with these elite organizations</p>
-            </div>
-
-            <div class="partners-grid reveal">
+    <!-- HERO (ƏSAS GİRİŞ VƏ QARŞILAMA) BÖLMƏSİ -->
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <!-- VTC Statusu -->
+                <div class="badge">The Only Validated VTC in Azerbaijan</div>
                 
-                <div class="partner-card">
-                    <img src="https://i.imgur.com/EMEXZ0y.png" alt="Veldoria" class="partner-logo">
-                    <div class="partner-name">Veldoria Convoy Control</div>
-                </div>
-                 
-                </div>
-            </div>
-    </section>
-
-            <div class="partners-grid reveal">
-
-                <div class="partner-card">
-                    <img src="https://i.imgur.com/mGeo2Dz.jpeg" alt="Leaf" class="partner-logo">
-                    <div class="partner-name">Leaf Trucking</div>
-                </div>
-                 
-                </div>
-            </div>
-    </section>
-
-    <section id="team" class="section-padding">
-        <div class="container">
-            <div class="text-center">
-                <h2 class="section-title reveal">Staff Team</h2>
-            </div>
-            
-            <div class="staff-grid reveal">
-
-                <div class="staff-card">
-                    <div class="staff-header"></div>
-                    <div class="staff-avatar"><i class="fas fa-crown"></i></div> <div class="staff-role">Founder & Owner</div>
-                    <div class="staff-name">Telman</div>
-                </div>
-
-                <div class="staff-card">
-                    <div class="staff-header"></div>
-                    <div class="staff-avatar"><i class="fas fa-user-tie"></i></div>
-                    <div class="staff-role">Chief Operating Officer (COO)</div>
-                    <div class="staff-name">Fərid</div>
-                </div>
-
-                <div class="staff-card">
-                    <div class="staff-header"></div>
-                    <div class="staff-avatar"><i class="fas fa-clipboard-user"></i></div>
-                    <div class="staff-role">Recruitment Manager</div>
-                    <div class="staff-name">Vüsal</div>
-                </div>
-
-                <div class="staff-card">
-                    <div class="staff-header"></div>
-                    <div class="staff-avatar"><i class="fas fa-calendar-check"></i></div>
-                    <div class="staff-role">HR & Event Manager</div>
-                    <div class="staff-name">Telman</div>
-                </div>
-
-                <div class="staff-card">
-                    <div class="staff-header"></div>
-                    <div class="staff-avatar"><i class="fas fa-camera"></i></div>
-                    <div class="staff-role">Media Team</div>
-                    <div class="staff-name">Rəhman</div>
-                </div>
-
-                <div class="staff-card">
-                    <div class="staff-header"></div>
-                    <div class="staff-avatar"><i class="fas fa-handshake"></i></div>
-                    <div class="staff-role">Recruitment Team</div>
-                    <div class="staff-name">Fəxri</div>
-                </div>
-
-            </div>
-            </div>
-    </section>
-
-    <section id="gallery" class="section-padding" style="background: #0e0e0e;">
-        <div class="container">
-            <div class="text-center">
-                <h2 class="section-title reveal">Gallery</h2>
-                <p class="reveal" style="color:#888; margin-bottom: 30px;">Moments from our journey</p>
-            </div>
-            
-            <div class="gallery-grid reveal">
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="https://i.imgur.com/j7nCDqj.jpeg" alt="Truck">
-                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="https://i.imgur.com/Jexmh6T.jpeg" alt="Truck">
-                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="https://i.imgur.com/7bECy9R.jpeg" alt="Truck">
-                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="https://i.imgur.com/pd8fBgp.jpeg" alt="Truck">
-                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="https://i.imgur.com/KfskNu7.jpeg" alt="Truck">
-                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
-                </div>
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="https://i.imgur.com/HGdz6Ka.jpeg" alt="Truck">
-                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
-                </div>
-                 <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="https://i.imgur.com/Y1FUGpf.png" alt="Truck">
-                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
-                </div>
-                 <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="https://i.imgur.com/jbMmXa7.jpeg" alt="Truck">
-                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="rules" class="section-padding">
-        <div class="container">
-            <div class="text-center">
-                <h2 class="section-title reveal">Our Rules</h2>
-            </div>
-            <div class="rules-container reveal" style="margin-top: 40px;">
-                <div class="rule-card">
-                    <div class="rule-title"><i class="fas fa-check-circle"></i> 1. TruckersMP Guidelines</div>
-                    <div class="rule-desc">All drivers must strictly adhere to the official TruckersMP rules at all times. Bans may result in removal from the VTC.</div>
-                </div>
-                <div class="rule-card">
-                    <div class="rule-title"><i class="fas fa-check-circle"></i> 2. Respect & Professionalism</div>
-                    <div class="rule-desc">Disrespect towards staff members or other drivers is not tolerated. We represent Karabakh Company with pride.</div>
-                </div>
-                <div class="rule-card">
-                    <div class="rule-title"><i class="fas fa-check-circle"></i> 3. VTC Paint & Tag</div>
-                    <div class="rule-desc">During official convoys, you must use the official Karabakh Company paint job and player tag (Orange).</div>
-                </div>
-                <div class="rule-card">
-                    <div class="rule-title"><i class="fas fa-check-circle"></i> 4. Convoy Etiquette</div>
-                    <div class="rule-desc">Keep distance, follow the Convoy Control instructions, and do not overtake unless necessary.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="join" class="section-padding" style="background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://imgur.com/UlJTyjd'); background-size: cover; background-attachment: fixed;">
-        <div class="container text-center">
-            <h2 style="color: #fff; font-size: 3rem; margin-bottom: 20px;">READY TO DRIVE?</h2>
-            <p style="color: #ddd; max-width: 600px; margin: 0 auto 30px;">Join Karabakh Company today and become part of the most disciplined trucking family in Azerbaijan.</p>
-            <a href="https://truckersmp.com/vtc/81836" class="btn" target="_blank" style="background: var(--primary); color: #000;">APPLY ON TRUCKERSMP</a>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <img src="https://i.imgur.com/LoC8slA.png" alt="Logo" style="width: 80px;">
-                    <p>Karabakh Company - Professional Virtual Trucking in ETS2 & ATS. Representing Azerbaijan.</p>
-                </div>
+                <!-- Şirikət Adı -->
+                <h1>Welcome to <br><span>Karabakh Company</span></h1>
                 
-                <div class="footer-col">
-                    <h4 class="footer-heading">Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#rules">Rules</a></li>
-                        <li><a href="#team">Staff</a></li>
-                        <li><a href="#partners">Partners</a></li>
-                    </ul>
+                <!-- Qısa Sloqan və ya Təsvir -->
+                <p>Representing Azerbaijan with pride, structural integrity, and professionalism on the global TruckersMP stage.</p>
+                
+                <!-- Əsas Düymələr (Kliklədikdə müvafiq keçidlərə yönləndirir) -->
+                <div class="btn-group">
+                    <a href="https://truckersmp.com/vtc/81836" target="_blank" class="btn btn-primary">TruckersMP Profile</a>
+                    <a href="https://discord.gg/5YJqGrwhkr" target="_blank" class="btn btn-secondary">Join Our Discord</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- HAQQIMIZDA (ABOUT) BÖLMƏSİ -->
+        <section id="about">
+            <div class="section-header">
+                <h2>About Us</h2>
+            </div>
+            <div class="about-box">
+                <!-- BURADAKI MƏTNİ İSTƏDİYİNİZ ZAMAN DƏYİŞƏ BİLƏRSİNİZ -->
+                <p class="about-text">Karabakh Company was established on July 27, 2025, as a high-standard virtual trucking organization. We focus on operational excellence in ETS2 and ATS, fostering a community built on discipline, structural integrity, and professional synergy.
+
+                We are not just a VTC; we are a family representing Azerbaijan on the global TruckersMP stage.</p>
+            </div>
+        </section>
+
+        <!-- KOMANDA (STAFF TEAM) BÖLMƏSİ -->
+        <!-- 
+           YENİ AD ƏLAVƏ ETMƏK VƏ YA DƏYİŞMƏK ÇOX SADƏDİR:
+           - Hər bir şəxs bir "staff-card" bloku daxilindədir.
+           - Əgər vakansiya doludursa class="staff-card filled" saxlayın, addan aşağıdakı <a href="..."> hissəsinə TruckersMP linkini yazın.
+           - Əgər vakansiya boşdursa class="staff-card hiring" edin, ad yerinə "RECRUITMENT OPEN" yazın və link əvəzinə status teqi əlavə edin.
+        -->
+        <section id="staff">
+            <div class="section-header">
+                <h2>Staff Team</h2>
+            </div>
+            <div class="staff-grid">
+
+                <!-- FOUNDER & OWNER -->
+                <div class="staff-card filled">
+                    <div>
+                        <div class="role-title">Founder & Owner</div>
+                        <div class="staff-name">Telman</div>
+                    </div>
+                    <a href="https://truckersmp.com/user/5341001" target="_blank" class="staff-link">TruckersMP Profile</a>
                 </div>
 
-                <div class="footer-col">
-                    <h4 class="footer-heading">Follow Us</h4>
-                    <div class="social-icons">
-                        <a href="https://discord.gg/5YJqGrwhkr" target="_blank"><i class="fab fa-discord"></i></a>
-                        <a href="https://www.tiktok.com/@karabakhvtc?_r=1&_t=ZS-93ceeuJKQ8i" target="_blank"><i class="fab fa-tiktok"></i></a>
-                        <a href="https://youtube.com/@karabakhvtc?si=rJ8L2tZ5A8RoGCTL" target="_blank"><i class="fab fa-youtube"></i></a>
+                <!-- CHIEF OPERATING OFFICER -->
+                <div class="staff-card filled">
+                    <div>
+                        <div class="role-title">Chief Operating Officer (COO)</div>
+                        <div class="staff-name">Fərid</div>
+                    </div>
+                    <a href="https://truckersmp.com/user/5707927" target="_blank" class="staff-link">TruckersMP Profile</a>
+                </div>
+
+                <!-- EVENT MANAGER -->
+                <div class="staff-card hiring">
+                    <div>
+                        <div class="role-title">Event Manager</div>
+                        <div class="staff-name" style="color: #ff3b3b;">Recruitment Open</div>
+                    </div>
+                    <span class="status-badge status-hiring">Hiring Now</span>
+                </div>
+
+                <!-- EVENT TEAM -->
+                <div class="staff-card hiring">
+                    <div>
+                        <div class="role-title">Event Team</div>
+                        <div class="staff-name" style="color: #ff3b3b;">Recruitment Open</div>
+                    </div>
+                    <span class="status-badge status-hiring">Hiring Now</span>
+                </div>
+
+                <!-- HUMAN RESOURCES MANAGER -->
+                <div class="staff-card hiring">
+                    <div>
+                        <div class="role-title">Human Resources Manager</div>
+                        <div class="staff-name" style="color: #ff3b3b;">Recruitment Open</div>
+                    </div>
+                    <span class="status-badge status-hiring">Hiring Now</span>
+                </div>
+
+                <!-- HUMAN RESOURCES TEAM -->
+                <div class="staff-card hiring">
+                    <div>
+                        <div class="role-title">Human Resources Team</div>
+                        <div class="staff-name" style="color: #ff3b3b;">Recruitment Open</div>
+                    </div>
+                    <span class="status-badge status-hiring">Hiring Now</span>
+                </div>
+
+                <!-- RECRUITMENT MANAGER -->
+                <div class="staff-card filled">
+                    <div>
+                        <div class="role-title">Recruitment Manager</div>
+                        <div class="staff-name">Vüsal</div>
+                    </div>
+                    <a href="https://truckersmp.com/user/5683996" target="_blank" class="staff-link">TruckersMP Profile</a>
+                </div>
+
+                <!-- RECRUITMENT TEAM - 1 -->
+                <div class="staff-card filled">
+                    <div>
+                        <div class="role-title">Recruitment Team</div>
+                        <div class="staff-name">Rəbbin</div>
+                    </div>
+                    <a href="https://truckersmp.com/user/5325090" target="_blank" class="staff-link">TruckersMP Profile</a>
+                </div>
+
+                <!-- RECRUITMENT TEAM - 2 -->
+                <div class="staff-card filled">
+                    <div>
+                        <div class="role-title">Recruitment Team</div>
+                        <div class="staff-name">Fəxri</div>
+                    </div>
+                    <a href="https://truckersmp.com/user/5946613" target="_blank" class="staff-link">TruckersMP Profile</a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- QALEREYA (GALLERY) BÖLMƏSİ -->
+        <!-- 
+           ŞƏKİLLƏRİ DƏYİŞMƏK VƏ YA YENİSİNİ ƏLAVƏ ETMƏK ÜÇÜN:
+           src="..." daxilindəki imgur linkini silib öz yeni şəkil linkinizi yapışdırın.
+           Yeni şəkil əlavə etmək üçün bütöv bir <div class="gallery-item">...</div> blokunu kopyalayıb altına yerləşdirin.
+        -->
+        <section id="gallery">
+            <div class="section-header">
+                <h2>Gallery</h2>
+            </div>
+            <div class="gallery-grid">
+                
+                <!-- Şəkil 1 -->
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/2IQeBjP.jpeg" alt="Karabakh Company Convoy Screenshot">
+                </div>
+
+                <!-- Şəkil 2 -->
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/1R5KK9b.jpeg" alt="Karabakh Company Convoy Screenshot">
+                </div>
+
+                <!-- Şəkil 3 -->
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/cQaUy7G.jpeg" alt="Karabakh Company Convoy Screenshot">
+                </div>
+
+                <!-- Şəkil 4 -->
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/x2829F7.jpeg" alt="Karabakh Company Convoy Screenshot">
+                </div>
+
+                <!-- Şəkil 5 -->
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/VMfv36L.jpeg" alt="Karabakh Company Convoy Screenshot">
+                </div>
+
+                <!-- Şəkil 6 -->
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/b5uupUl.jpeg" alt="Karabakh Company Convoy Screenshot">
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TƏDBİRLƏR (EVENTS) BÖLMƏSİ -->
+        <!-- 
+           HƏR YENİ KONVOY/EVENT ƏLAVƏ ETDİKDƏ BU BLOKU KOPYALAYIB İÇİNİ DƏYİŞİN.
+           - Tarixi göstərmək üçün <span class="day">..</span> və <span class="month">..</span> hissəsini dəyişin.
+           - Keçid linkini isə href="..." daxilinə yerləşdirin.
+        -->
+        <section id="events">
+            <div class="section-header">
+                <h2>Our Events</h2>
+            </div>
+            <div class="events-container">
+                
+                <!-- EVENT KARTI BAŞLANGICI -->
+                <div class="event-card">
+                    <div class="event-date-box">
+                        <span class="day">10</span>
+                        <span class="month">Jul</span>
+                    </div>
+                    <div class="event-details">
+                        <h3>1st Anniversary Convoy</h3>
+                        <p>Join us as we celebrate our first official year on TruckersMP with an unforgettable scenic convoy layout.</p>
+                    </div>
+                    <div>
+                        <a href="https://truckersmp.com/events/34373-karabakh-company1st-year-anniversary" target="_blank" class="btn btn-primary" style="font-size: 0.85rem; padding: 8px 20px;">Event Page</a>
                     </div>
                 </div>
+                <!-- EVENT KARTI BİTİŞİ -->
+
             </div>
-            <div class="copyright">
-                <p>&copy; 2026 Karabakh Company VTC. All Rights Reserved. Design by Telman.</p>
+        </section>
+
+        <!-- TƏRƏFDAŞLAR (PARTNERS) BÖLMƏSİ -->
+        <!-- 
+           TƏRƏFDAŞ ŞİRKƏTLƏRİ BURADAN İDARƏ EDƏ BİLƏRSİNİZ:
+           - href="..." daxilinə tərəfdaşın VTC linkini qoyun.
+           - src="..." daxilinə tərəfdaşın loqo linkini qoyun.
+           - <h3> daxilinə adını yazın.
+        -->
+        <section id="partners">
+            <div class="section-header">
+                <h2>Our Partners</h2>
             </div>
+            <div class="partners-grid">
+
+                <!-- Tərəfdaş 1: Veldoria Convoy Control -->
+                <a href="https://truckersmp.com/vtc/73816" target="_blank" class="partner-card">
+                    <div class="partner-logo-container">
+                        <img src="https://i.imgur.com/S6YJxHw.png" alt="Veldoria Convoy Control Logo">
+                    </div>
+                    <h3>Veldoria Convoy Control</h3>
+                </a>
+
+                <!-- Tərəfdaş 2: Güllüm Express -->
+                <a href="https://truckersmp.com/vtc/87113" target="_blank" class="partner-card">
+                    <div class="partner-logo-container">
+                        <img src="https://i.imgur.com/iyaIABH.jpeg" alt="Güllüm Express Logo">
+                    </div>
+                    <h3>Güllüm Express</h3>
+                </a>
+
+                <!-- Tərəfdaş 3: Purple Dragons Logistics -->
+                <a href="https://truckersmp.com/vtc/74387" target="_blank" class="partner-card">
+                    <div class="partner-logo-container">
+                        <img src="https://i.imgur.com/udr1o1C.png" alt="Purple Dragons Logistics Logo">
+                    </div>
+                    <h3>Purple Dragons Logistics</h3>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- BİZƏ QOŞULUN (JOIN US / CALL TO ACTION) BÖLMƏSİ -->
+        <section id="join" style="text-align: center; border-top: 1px solid rgba(255,187,0,0.05); padding-top: 100px;">
+            <div class="hero-content" style="margin: 0 auto;">
+                <div class="badge" style="animation: none;">Ready to Drive?</div>
+                <h2 style="font-size: 2.5rem; font-weight: 800; text-transform: uppercase; margin-bottom: 20px;">Become a Part of Our Family</h2>
+                <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 40px auto; font-size: 1.1rem;">We are always looking for passionate, disciplined, and professional drivers to join Karabakh Company. Submit your application on TruckersMP or chat with our recruitment team on Discord.</p>
+                <div class="btn-group">
+                    <a href="https://truckersmp.com/vtc/81836" target="_blank" class="btn btn-primary">Apply on TruckersMP</a>
+                    <a href="https://discord.gg/5YJqGrwhkr" target="_blank" class="btn btn-secondary">Join Discord Server</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ALT MƏLUMAT PANERLİ (FOOTER) -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h4>Karabakh <span>Company</span></h4>
+                <p>The Only Validated VTC in Azerbaijan. Established July 27, 2025.</p>
+            </div>
+            
+            <!-- SOSİAL ŞƏBƏKƏ LINKLƏRİ -->
+            <div class="social-links">
+                <!-- TruckersMP Səhifəsi -->
+                <a href="https://truckersmp.com/vtc/81836" target="_blank" class="social-btn" title="TruckersMP">TMP</a>
+                <!-- Discord Serveri -->
+                <a href="https://discord.gg/5YJqGrwhkr" target="_blank" class="social-btn" title="Discord">DC</a>
+                <!-- TikTok Səhifəsi -->
+                <a href="https://www.tiktok.com/@karabakhvtc?_t=ZS-8yjTulmiDpv&_r=1" target="_blank" class="social-btn" title="TikTok">TT</a>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Karabakh Company. All Rights Reserved. Designed with Excellence.
         </div>
     </footer>
 
-    <div class="lightbox" id="lightbox">
-        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-        <img id="lightbox-img" src="">
-    </div>
-
+    <!-- MOBİL MENYU ÜÇÜN SADƏ SCRIPT -->
     <script>
-        // Preloader Logic
-        window.addEventListener('load', function() {
-            const preloader = document.getElementById('preloader');
-            setTimeout(() => {
-                preloader.style.opacity = '0';
-                setTimeout(() => {
-                    preloader.style.display = 'none';
-                }, 500);
-            }, 1500); // 1.5s load time
+        const burgerToggle = document.getElementById('burger-toggle');
+        const navMenu = document.getElementById('nav-menu');
+
+        burgerToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
         });
 
-        // Sticky Navbar & Mobile Menu
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            header.classList.toggle('sticky', window.scrollY > 0);
+        // Menyu linkinə kliklədikdə mobil menyunun bağlanması
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
         });
-
-        function toggleMenu() {
-            const nav = document.getElementById('navLinks');
-            nav.classList.toggle('active');
-        }
-
-        // Scroll Reveal Animation
-        window.addEventListener('scroll', reveal);
-
-        function reveal() {
-            var reveals = document.querySelectorAll('.reveal');
-            for (var i = 0; i < reveals.length; i++) {
-                var windowheight = window.innerHeight;
-                var revealtop = reveals[i].getBoundingClientRect().top;
-                var revealpoint = 150;
-
-                if (revealtop < windowheight - revealpoint) {
-                    reveals[i].classList.add('active');
-                }
-            }
-        }
-
-        // Lightbox Logic
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-
-        function openLightbox(element) {
-            const img = element.querySelector('img');
-            lightbox.style.display = 'flex';
-            lightboxImg.src = img.src;
-        }
-
-        function closeLightbox() {
-            lightbox.style.display = 'none';
-        }
-
-        // Close lightbox when clicking outside image
-        lightbox.addEventListener('click', function(e) {
-            if(e.target !== lightboxImg) {
-                closeLightbox();
-            }
-        });
-
-        // Number Counter Animation
-        const statsSection = document.querySelector('.stats');
-        let counted = false;
-
-        window.addEventListener('scroll', () => {
-            if(!counted && window.scrollY >= statsSection.offsetTop - 500) {
-                const counters = document.querySelectorAll('.stat-number');
-                counters.forEach(counter => {
-                    const target = +counter.getAttribute('data-target');
-                    const increment = target / 100;
-                    
-                    const updateCount = () => {
-                        const count = +counter.innerText;
-                        if(count < target) {
-                            counter.innerText = Math.ceil(count + increment);
-                            setTimeout(updateCount, 20);
-                        } else {
-                            counter.innerText = target + "+"; // Add + sign at end
-                        }
-                    };
-                    updateCount();
-                });
-                counted = true;
-            }
-        });
-
     </script>
 </body>
 </html>
