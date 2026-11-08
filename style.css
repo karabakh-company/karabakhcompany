@@ -54,3 +54,5 @@ footer{background:rgba(5,5,5,.97);border-top:1px solid rgba(255,187,0,.15);paddi
 #ck button{background:var(--y);border:0;border-radius:6px;padding:7px 18px;font-weight:700;cursor:pointer}
 a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--y);outline-offset:2px}
 @media(max-width:900px){.burger{display:block}.nav ul{display:none;position:absolute;top:100%;left:0;right:0;background:#0a0a0a;flex-direction:column;padding:18px 20px}.nav ul.open{display:flex}}
+
+.nw h3{color:#fff;text-transform:none;font-size:1.05rem}.nw small{display:block}

@@ -1,5 +1,6 @@
 (function () {
-  var S = window.SITE, L = "en", P = document.body.dataset.page;
+  var S = window.SITE, L = "en", P = document.body.dataset.page, AE = null, AN = null;
+  var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
   try { L = localStorage.getItem("lang") || "en"; } catch (e) {}
   var t = function (o) { return Array.isArray(o) ? o[L === "az" ? 1 : 0] : o; };
   var i = function (c) { return '<i class="fa-solid fa-' + c + '"></i> '; };
@@ -13,6 +14,8 @@
     about: ["Karabakh Company was established on July 27, 2025, as a high-standard virtual trucking organization. We focus on operational excellence in ETS2 and ATS, fostering a community built on discipline, structural integrity, and professional synergy.\n\nWe are not just a VTC; we are a family representing Azerbaijan on the global TruckersMP stage.", "Karabakh Company 27 iyul 2025-ci ildə yüksək standartlı virtual daşıma təşkilatı kimi yaradılıb. ETS2 və ATS-də əməliyyat mükəmməlliyinə fokuslanır, intizam, nizam və peşəkar əməkdaşlıq üzərində qurulmuş icma yaradırıq.\n\nBiz sadəcə VTC deyilik; Azərbaycanı qlobal TruckersMP səhnəsində təmsil edən bir ailəyik."],
     sub: { about: ["Who we are", "Biz kimik"], team: ["The people running Karabakh Company", "Karabakh Company-ni idarə edənlər"], events: ["Upcoming convoys and events", "Qarşıdakı konvoy və tədbirlər"], gallery: ["Moments from our convoys", "Konvoylarımızdan anlar"], partners: ["VTCs we work with", "Əməkdaşlıq etdiyimiz VTC-lər"], join: ["Become part of our family", "Ailəmizin bir hissəsi olun"], rules: ["Please read before joining", "Qoşulmazdan əvvəl oxuyun"], faq: ["Frequently asked questions", "Tez-tez verilən suallar"], contact: ["Get in touch", "Bizimlə əlaqə"], terms: ["", ""], privacy: ["", ""] },
     title: { terms: ["Terms of Service", "Xidmət Şərtləri"], privacy: ["Privacy Policy", "Gizlilik Siyasəti"] },
+    news: ["Latest news", "Son xəbərlər"], nonews: ["No news yet. Check our TruckersMP page and Discord.", "Hələ xəbər yoxdur. TruckersMP səhifəmizə və Discord-a baxın."],
+    read: ["Read on TruckersMP", "TruckersMP-də oxu"], local: ["your local time", "yerli vaxtınızla"],
     next: ["Upcoming events", "Yaxınlaşan tədbirlər"], none: ["No upcoming events right now. Check our Discord for news.", "Hazırda tədbir yoxdur. Yeniliklər üçün Discord-a baxın."],
     page: ["Event page", "Tədbir səhifəsi"], hiring: ["Recruitment open", "İşçi axtarılır"],
     roles: ["Company roles", "Şirkət daxili rollar"], reqs: ["Requirements", "Tələblər"],
@@ -28,14 +31,26 @@
   };
 
   function evs(n) {
-    var today = new Date().toISOString().slice(0, 10);
-    var l = S.events.filter(function (e) { return e.date >= today; }).sort(function (a, b) { return a.date < b.date ? -1 : 1; });
+    var cut = Date.now() - 4 * 36e5;
+    var src = AE ? AE.map(function (e) {
+      var p = function (x) { return (x && (x.city || x.location)) || ""; };
+      return { w: new Date(String(e.start_at).replace(" ", "T") + "Z"), t: e.name, d: [p(e.departure), p(e.arrive)].filter(Boolean).join(" - ") + (e.server ? " | " + e.server : ""), url: e.url, tm: 1 };
+    }) : S.events.map(function (e) { return { w: new Date(e.date + "T12:00:00"), t: e.t, d: t(e.d), url: e.url }; });
+    var l = src.filter(function (e) { return !isNaN(e.w) && e.w.getTime() > cut; }).sort(function (a, b) { return a.w - b.w; });
     if (n) l = l.slice(0, n);
     if (!l.length) return '<div class="box">' + t(U.none) + "</div>";
     return l.map(function (e) {
-      var d = new Date(e.date + "T12:00:00");
-      return '<div class="card ev"><div class="date"><b>' + d.getDate() + "</b>" + d.toLocaleDateString(L === "az" ? "az" : "en", { month: "short" }) + '</div><div><h3 style="font-size:1.1rem;color:#fff;text-transform:none">' + e.t + "</h3><small>" + t(e.d) + '</small></div><a class="btn p" target="_blank" rel="noopener" href="' + e.url + '">' + t(U.page) + "</a></div>";
+      var tm = e.tm ? e.w.toLocaleTimeString(L === "az" ? "az" : "en", { hour: "2-digit", minute: "2-digit" }) + " (" + t(U.local) + ")<br>" : "";
+      return '<div class="card ev"><div class="date"><b>' + e.w.getDate() + "</b>" + e.w.toLocaleDateString(L === "az" ? "az" : "en", { month: "short" }) + '</div><div><h3 style="font-size:1.1rem;color:#fff;text-transform:none">' + esc(e.t) + "</h3><small>" + tm + esc(e.d) + '</small></div><a class="btn p" target="_blank" rel="noopener" href="' + esc(e.url) + '">' + t(U.page) + "</a></div>";
     }).join("");
+  }
+  function nws(n) {
+    var l = (AN || []).slice(0, n || 50);
+    if (!l.length) return '<div class="box">' + t(U.nonews) + "</div>";
+    return '<div class="grid">' + l.map(function (x) {
+      var d = x.published_at ? new Date(String(x.published_at).replace(" ", "T") + "Z") : null;
+      return '<div class="card nw"><h3>' + esc(x.title) + "</h3>" + (d && !isNaN(d) ? "<small>" + d.toLocaleDateString(L === "az" ? "az" : "en", { day: "numeric", month: "long", year: "numeric" }) + "</small>" : "") + "<p style='color:#d1d1d1;margin:8px 0 14px'>" + esc(x.summary) + '</p><a class="btn p" style="padding:7px 16px;font-size:.78rem" target="_blank" rel="noopener" href="' + esc(x.url) + '">' + t(U.read) + "</a></div>";
+    }).join("") + "</div>";
   }
   var head = function (title, sub) { return '<div class="ph"><h1>' + title + "</h1><p>" + sub + "</p></div>"; };
   var sec = function (h) { return "<section>" + h + "</section>"; };
@@ -46,7 +61,8 @@
     index: function () {
       return '<section class="hero"><img src="' + S.banner + '" alt="Karabakh Company"><div class="badge">' + i("medal") + t(U.badge) + "</div><h1>" + t(U.welcome) + " <span>Karabakh Company</span></h1><p>" + t(U.tag) + '</p><div class="btns">' + btn(S.tmp, "truck", "TruckersMP", 1) + btn(S.discord, "comments", "Discord") + "</div></section>" +
         sec('<div class="box">' + t(U.about) + "</div>") + sec("<h2>" + t(U.next) + "</h2>" + evs(2)) +
-        sec('<div class="center"><h2>' + t(U.ready) + "</h2><p style='color:#d1d1d1'>" + t(U.cta) + '</p><div class="btns"><a class="btn p" href="join.html">' + t(U.join) + "</a></div></div>");
+        sec('<div class="center"><h2>' + t(U.ready) + "</h2><p style='color:#d1d1d1'>" + t(U.cta) + '</p><div class="btns"><a class="btn p" href="join.html">' + t(U.join) + "</a></div></div>") +
+        sec("<h2>" + t(U.news) + "</h2>" + nws(3));
     },
     about: function () { return head(t(U.nav[1][1]), t(U.sub.about)) + sec('<div class="box">' + t(U.about) + "</div>") + sec("<h2>" + t(U.roles) + '</h2><div class="grid">' + S.ranks.map(function (r) { return '<div class="card"><span class="tag">' + r.tag + "</span><h3 style='color:#fff'>" + t(r.n) + "</h3><small>" + t(r.d) + "</small></div>"; }).join("") + "</div>"); },
     team: function () {
@@ -88,4 +104,10 @@
     }
   }
   render();
+  var J = function (u) { return fetch(u, { cache: "no-store" }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); };
+  Promise.all([J("events.json"), J("news.json")]).then(function (r) {
+    if (r[0] && Array.isArray(r[0].events)) AE = r[0].events;
+    if (r[1] && Array.isArray(r[1].news)) AN = r[1].news;
+    if (AE || AN) render();
+  });
 })();

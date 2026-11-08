@@ -4,6 +4,7 @@
    To add/remove an item: copy one {...} block (with its comma) or delete it.
    ========================================================== */
 window.SITE = {
+  vtcId: 81836,
   email: "karabakhcompanyoffical@gmail.com",
   discord: "https://discord.gg/5YJqGrwhkr",
   ticket: "https://discord.com/channels/1399041637363089520/1465328363341221948/1540080888673468530",
@@ -51,8 +52,8 @@ window.SITE = {
     { tag: "HRT", n: ["Human Resources Team", "HR Komandası"], d: ["Evaluates new members joining the company and supports existing ones.", "Şirkətə yeni qatılanları dəyərləndirir, mövcud üzvlərə dəstək olur."] },
     { tag: "RM", n: ["Recruitment Manager", "Qəbul Meneceri"], d: ["Leads recruitment and the application process.", "Qəbul prosesinə və müraciətlərə rəhbərlik edir."] },
     { tag: "RT", n: ["Recruitment Team", "Qəbul Komandası"], d: ["Reviews applications and interviews candidates.", "Müraciətləri nəzərdən keçirir, namizədlərlə görüşür."] },
-    { tag: "SE", n: ["Save Editor", "Save Meneceri"], d: ["A person who prepares trucks for use in convoys or regular gameplay, and creates ready-made profiles using save-editing.", "Yük maşınlarını karvanlarda və ya adi oyun gedişatında istifadə üçün hazırlayan, həmçinin yaddaş fayllarını redaktə etmək (save-editing) vasitəsilə hazır profillər yaradan şəxs."] },
-    { tag: "M.Driver", n: ["Master Driver", "Təcrübəli Sürücü"], d: ["Active, established member of the company.", "Şirkətin aktiv və təsdiqlənmiş üzvü."] },
+    { tag: "SE", n: ["Save Editor", "Save Editor"], d: ["Prepares trucks, profiles and saves for our convoys.", "Konvoylarımız üçün tır, profil və save-lər hazırlayır."] },
+    { tag: "M.Driver", n: ["Master Driver", "Master Sürücü"], d: ["Highly experienced and trusted driver of the company.", "Şirkətin yüksək təcrübəli və etibarlı sürücüsü."] },
     { tag: "Driver", n: ["Driver", "Sürücü"], d: ["Full member who has passed the trial period.", "Sınaq müddətini keçmiş tam hüquqlu üzv."] },
     { tag: "Trainee", n: ["Trainee", "Təcrübəçi"], d: ["New member in the trial period (usually 14 days).", "Sınaq müddətindəki yeni üzv (adətən 14 gün)."] }
   ],
