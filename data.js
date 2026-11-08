@@ -51,8 +51,8 @@ window.SITE = {
     { tag: "HRT", n: ["Human Resources Team", "HR Komandası"], d: ["Evaluates new members joining the company and supports existing ones.", "Şirkətə yeni qatılanları dəyərləndirir, mövcud üzvlərə dəstək olur."] },
     { tag: "RM", n: ["Recruitment Manager", "Qəbul Meneceri"], d: ["Leads recruitment and the application process.", "Qəbul prosesinə və müraciətlərə rəhbərlik edir."] },
     { tag: "RT", n: ["Recruitment Team", "Qəbul Komandası"], d: ["Reviews applications and interviews candidates.", "Müraciətləri nəzərdən keçirir, namizədlərlə görüşür."] },
-    { tag: "SE", n: ["Senior Driver (SE)", "Böyük Sürücü (SE)"], d: ["Experienced, trusted driver who helps guide newer members.", "Təcrübəli, etibarlı sürücü; yeni üzvlərə yol göstərir."] },
-    { tag: "M.Driver", n: ["Member Driver", "Üzv Sürücü"], d: ["Active, established member of the company.", "Şirkətin aktiv və təsdiqlənmiş üzvü."] },
+    { tag: "SE", n: ["Save Editor", "Save Meneceri"], d: ["A person who prepares trucks for use in convoys or regular gameplay, and creates ready-made profiles using save-editing.", "Yük maşınlarını karvanlarda və ya adi oyun gedişatında istifadə üçün hazırlayan, həmçinin yaddaş fayllarını redaktə etmək (save-editing) vasitəsilə hazır profillər yaradan şəxs."] },
+    { tag: "M.Driver", n: ["Master Driver", "Təcrübəli Sürücü"], d: ["Active, established member of the company.", "Şirkətin aktiv və təsdiqlənmiş üzvü."] },
     { tag: "Driver", n: ["Driver", "Sürücü"], d: ["Full member who has passed the trial period.", "Sınaq müddətini keçmiş tam hüquqlu üzv."] },
     { tag: "Trainee", n: ["Trainee", "Təcrübəçi"], d: ["New member in the trial period (usually 14 days).", "Sınaq müddətindəki yeni üzv (adətən 14 gün)."] }
   ],
