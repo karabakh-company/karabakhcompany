@@ -1,1 +1,34 @@
-{"events":null}
+{
+ "events": [
+  {
+   "id": 37175,
+   "name": "Karabakh Company | Farid’s Birthday Convoy",
+   "start_at": "2026-11-30 18:00:00",
+   "departure": {
+    "location": "SLOTS",
+    "city": "Kiel"
+   },
+   "arrive": {
+    "location": "Prague - Stein Bruch *Company",
+    "city": "Other"
+   },
+   "server": "Event Server",
+   "url": "https://truckersmp.com/events/37175-karabakh-company|-farid%E2%80%99s-birthday-convoy"
+  },
+  {
+   "id": 37709,
+   "name": "Karabakh Company | December Convoy",
+   "start_at": "2026-12-14 18:00:00",
+   "departure": {
+    "location": "SLOTS",
+    "city": "Zürich"
+   },
+   "arrive": {
+    "location": "EuroAcres - Company",
+    "city": "Groningen"
+   },
+   "server": "To be determined",
+   "url": "https://truckersmp.com/events/37709-karabakh-company|-december-convoy"
+  }
+ ]
+}
