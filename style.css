@@ -56,3 +56,8 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
 @media(max-width:900px){.burger{display:block}.nav ul{display:none;position:absolute;top:100%;left:0;right:0;background:#0a0a0a;flex-direction:column;padding:18px 20px}.nav ul.open{display:flex}}
 
 .nw h3{color:#fff;text-transform:none;font-size:1.05rem}.nw small{display:block}
+.gi{cursor:zoom-in}
+#lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:30;align-items:center;justify-content:center}
+#lb img{max-width:92vw;max-height:86vh;border-radius:8px}
+#lb button{position:absolute;background:rgba(20,20,20,.85);color:#FFBB00;border:1px solid #FFBB00;border-radius:50%;width:44px;height:44px;font-size:1.6rem;line-height:1;cursor:pointer}
+#lb .x{top:16px;right:16px}#lb .pv{left:10px;top:50%}#lb .nx{right:10px;top:50%}

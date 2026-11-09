@@ -72,7 +72,7 @@
       }).join("") + "</div>");
     },
     events: function () { return head(t(U.nav[3][1]), t(U.sub.events)) + sec(evs()); },
-    gallery: function () { return head(t(U.nav[4][1]), t(U.sub.gallery)) + sec('<div class="gal">' + S.gallery.map(function (g) { return '<a target="_blank" rel="noopener" href="' + g + '"><img loading="lazy" src="' + g + '" alt="Convoy screenshot"></a>'; }).join("") + "</div>"); },
+    gallery: function () { return head(t(U.nav[4][1]), t(U.sub.gallery)) + sec('<div class="gal">' + S.gallery.map(function (g, k) { return '<img class="gi" loading="lazy" data-i="' + k + '" src="' + g + '" alt="Convoy screenshot">'; }).join("") + "</div>"); },
     partners: function () { return head(t(U.nav[5][1]), t(U.sub.partners)) + sec('<div class="grid">' + S.partners.map(function (p) { return '<a class="card pt" target="_blank" rel="noopener" href="' + p.url + '"><img loading="lazy" src="' + p.img + '" alt="' + p.n + '"><h3 style="color:#fff;text-transform:none;font-size:1.05rem">' + p.n + "</h3></a>"; }).join("") + "</div>"); },
     join: function () { return head(t(U.join), t(U.sub.join)) + sec("<h2>" + t(U.reqs) + '</h2><div class="box"><ul class="l">' + S.reqs.map(function (r) { return "<li>" + t(r) + "</li>"; }).join("") + "</ul></div>") + sec("<h2>" + t(U.how) + '</h2><div class="box">' + t(U.howt) + '</div><div class="btns">' + btn(S.ticket, "ticket", t(U.ticket), 1) + btn(S.apply, "file-signature", t(U.apply)) + "</div>"); },
     rules: function () { return head(t(U.nav[6][1]), t(U.sub.rules)) + sec(S.rules.map(function (r) { return '<div class="box"><h3>' + t(r.h) + "</h3>" + t(r.p) + "</div>"; }).join("")); },
@@ -103,6 +103,21 @@
       document.body.appendChild(d);
     }
   }
+  var lb;
+  function closeLb() { if (lb) lb.style.display = "none"; }
+  function openLb(k) {
+    var n = S.gallery.length; k = (k + n) % n;
+    if (!lb) {
+      lb = document.createElement("div"); lb.id = "lb";
+      lb.innerHTML = '<button class="x" aria-label="Close">&times;</button><button class="pv" aria-label="Previous">&#8249;</button><img alt=""><button class="nx" aria-label="Next">&#8250;</button>';
+      document.body.appendChild(lb);
+      lb.onclick = function (e) { var c = e.target.className; if (c === "pv") openLb(lb.k - 1); else if (c === "nx") openLb(lb.k + 1); else if (e.target.tagName !== "IMG") closeLb(); };
+    }
+    lb.k = k; lb.querySelector("img").src = S.gallery[k]; lb.style.display = "flex";
+  }
+  document.addEventListener("click", function (e) { var g = e.target.closest && e.target.closest(".gi"); if (g) openLb(+g.dataset.i); });
+  document.addEventListener("keydown", function (e) { if (!lb || lb.style.display !== "flex") return; if (e.key === "Escape") closeLb(); if (e.key === "ArrowLeft") openLb(lb.k - 1); if (e.key === "ArrowRight") openLb(lb.k + 1); });
+
   render();
   var J = function (u) { return fetch(u, { cache: "no-store" }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); };
   Promise.all([J("events.json"), J("news.json")]).then(function (r) {
