@@ -10,6 +10,7 @@ window.SITE = {
   ticket: "https://discord.com/channels/1399041637363089520/1465328363341221948/1540080888673468530",
   tmp: "https://truckersmp.com/vtc/81836",
   tiktok: "https://www.tiktok.com/@karabakhvtc?_t=ZS-8yjTulmiDpv&_r=1",
+  youtube: "https://www.youtube.com/@karabakhvtc",
   apply: "https://truckersmp.com/vtc/81836/recruitment-form/5249-karabakh-company-ə-qoşulun",
   logo: "https://i.imgur.com/suK0Znv.png",
   banner: "https://i.imgur.com/APz4V2Q.jpeg",
