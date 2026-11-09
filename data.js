@@ -42,7 +42,7 @@ window.SITE = {
     { date: "2026-12-14", t: "Karabakh Company | December Convoy", d: ["Join us and enjoy our event.", "Bizə qoşulun və tədbirdən həzz alın."], url: "https://truckersmp.com/events/37709-karabakh-company%7C-december-convoy" }
   ],
 
-  gallery: ["2IQeBjP", "1R5KK9b", "cQaUy7G", "x2829F7", "VMfv36L", "b5uupUl"].map(i => "https://i.imgur.com/" + i + ".jpeg"),
+  gallery: ["2IQeBjP", "1R5KK9b", "cQaUy7G", "x2829F7", "VMfv36L", "b5uupUl", "ot32Foj", "9jfArgS"].map(i => "https://i.imgur.com/" + i + ".jpeg"),
 
   ranks: [
     { tag: "Founder", n: ["Founder", "Qurucu"], d: ["Owns and leads the company and makes final decisions.", "Şirkətin sahibi və rəhbəri, son qərarları verir."] },
