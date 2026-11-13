@@ -8,7 +8,7 @@
   var U = {
     nav: [["index", ["Home", "Ana səhifə"]], ["about", ["About", "Haqqımızda"]], ["team", ["Team", "Komanda"]], ["events", ["Events", "Tədbirlər"]], ["gallery", ["Gallery", "Qalereya"]], ["partners", ["Partners", "Tərəfdaşlar"]], ["rules", ["Rules", "Qaydalar"]], ["faq", ["FAQ", "FAQ"]], ["contact", ["Contact", "Əlaqə"]]],
     join: ["Join Us", "Qoşul"],
-    badge: ["The Only Validated VTC in Azerbaijan", "Azərbaycanın yeganə təsdiqlənmiş VTC-si"],
+    badge: ["The only Verified VTC in Azerbaijan", "Azərbaycanın yeganə Verified VTC-si"],
     welcome: ["Welcome to", "Xoş gəlmisiniz,"],
     tag: ["Representing Azerbaijan with pride, structural integrity, and professionalism on the global TruckersMP stage.", "Azərbaycanı qlobal TruckersMP səhnəsində qürur, nizam-intizam və peşəkarlıqla təmsil edirik."],
     about: ["Karabakh Company was established on July 27, 2025, as a high-standard virtual trucking organization. We focus on operational excellence in ETS2 and ATS, fostering a community built on discipline, structural integrity, and professional synergy.\n\nWe are not just a VTC; we are a family representing Azerbaijan on the global TruckersMP stage.", "Karabakh Company 27 iyul 2025-ci ildə yüksək standartlı virtual daşıma təşkilatı kimi yaradılıb. ETS2 və ATS-də əməliyyat mükəmməlliyinə fokuslanır, intizam, nizam və peşəkar əməkdaşlıq üzərində qurulmuş icma yaradırıq.\n\nBiz sadəcə VTC deyilik; Azərbaycanı qlobal TruckersMP səhnəsində təmsil edən bir ailəyik."],
