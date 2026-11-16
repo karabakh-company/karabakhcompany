@@ -30,10 +30,7 @@ window.SITE = {
 
   /* PARTNERS: copy/delete a line to add/remove a partner */
   partners: [
-    { n: "Hort Trans UA", url: "https://truckersmp.com/vtc/82292", img: "https://i.imgur.com/yDv214c.png" },
-    { n: "Veldoria Convoy Control", url: "https://truckersmp.com/vtc/73816", img: "https://i.imgur.com/S6YJxHw.png" },
     { n: "Noxen Group", url: "https://truckersmp.com/vtc/87113", img: "https://i.imgur.com/1fmNAiu.jpeg" },
-    { n: "Purple Dragons Logistics", url: "https://truckersmp.com/vtc/74387", img: "https://i.imgur.com/udr1o1C.png" }
   ],
 
   /* EVENTS: date = YYYY-MM-DD. Past events hide automatically. */
