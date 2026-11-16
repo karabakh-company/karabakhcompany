@@ -44,6 +44,51 @@
    },
    "server": "To be determined",
    "url": "https://truckersmp.com/events/38879-karabakh-company|-welcome2027"
+  },
+  {
+   "id": 38953,
+   "name": "Karabakh Company | February Convoy",
+   "start_at": "2027-02-13 18:00:00",
+   "departure": {
+    "location": "SLOTS",
+    "city": "Zürich"
+   },
+   "arrive": {
+    "location": "EuroAcres - Company",
+    "city": "Groningen"
+   },
+   "server": "To be determined",
+   "url": "https://truckersmp.com/events/38953-karabakh-company|-february-convoy"
+  },
+  {
+   "id": 38954,
+   "name": "Karabakh Company | March Convoy",
+   "start_at": "2027-03-20 18:00:00",
+   "departure": {
+    "location": "SLOTS",
+    "city": "Munich"
+   },
+   "arrive": {
+    "location": "???",
+    "city": "Milan"
+   },
+   "server": "To be determined",
+   "url": "https://truckersmp.com/events/38954-karabakh-company|-march-convoy"
+  },
+  {
+   "id": 38955,
+   "name": "Karabakh Company | April Convoy",
+   "start_at": "2027-04-04 18:00:00",
+   "departure": {
+    "location": "SLOTS",
+    "city": "Zürich"
+   },
+   "arrive": {
+    "location": "EuroAcres - Company",
+    "city": "Groningen"
+   },
+   "server": "To be determined",
+   "url": "https://truckersmp.com/events/38955-karabakh-company|-april-convoy"
   }
  ]
 }
