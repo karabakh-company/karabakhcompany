@@ -31,6 +31,7 @@ window.SITE = {
   /* PARTNERS: copy/delete a line to add/remove a partner */
   partners: [
     { n: "Noxen Group", url: "https://truckersmp.com/vtc/87113", img: "https://static.truckersmp.com/images/vtc/logo/87113.1793566206.png" },
+    { n: "TRANSCOM", url: "https://truckersmp.com/vtc/84721", img: "https://static.truckersmp.com/images/vtc/logo/84721.1772118558.png" },
   ],
 
   /* EVENTS: date = YYYY-MM-DD. Past events hide automatically. */
