@@ -23,9 +23,9 @@ window.SITE = {
     { icon: "calendar-days", role: ["Event Manager", "Tədbir Meneceri"], m: [] },
     { icon: "calendar-check", role: ["Event Team", "Tədbir Komandası"], m: [{ n: "İlqar (relaks_mood)", id: "5389668" }] },
     { icon: "briefcase", role: ["HR Manager", "HR Meneceri"], m: [] },
-    { icon: "briefcase", role: ["HR Team", "HR Komandası"], m: [] },
+    { icon: "briefcase", role: ["HR Team", "HR Komandası"], m: [{ n: "Telman TEO (teoceov)", id: "6408074" }] },
     { icon: "user-plus", role: ["Recruitment Manager", "Qəbul Meneceri"], m: [{ n: "Vüsal (npneptun)", id: "5683996" }] },
-    { icon: "users-gear", role: ["Recruitment Team", "Qəbul Komandası"], m: [{ n: "Rəbbin (rangerrsol)", id: "5325090" }, { n: "Fəxri (ea7exe)", id: "5946613" }] }
+    { icon: "users-gear", role: ["Recruitment Team", "Qəbul Komandası"], m: [{ n: "Rəbbin (rangerrsol)", id: "5325090" }] },
   ],
 
   /* PARTNERS: copy/delete a line to add/remove a partner */
