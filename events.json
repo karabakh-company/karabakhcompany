@@ -89,6 +89,21 @@
    },
    "server": "To be determined",
    "url": "https://truckersmp.com/events/38955-karabakh-company|-april-convoy"
+  },
+  {
+   "id": 38956,
+   "name": "Karabakh Company | May Convoy",
+   "start_at": "2027-05-22 18:00:00",
+   "departure": {
+    "location": "SLOTS",
+    "city": "Munich"
+   },
+   "arrive": {
+    "location": "???",
+    "city": "Milan"
+   },
+   "server": "To be determined",
+   "url": "https://truckersmp.com/events/38956-karabakh-company|-may-convoy"
   }
  ]
 }
